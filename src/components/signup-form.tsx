@@ -235,7 +235,7 @@ export function SignupForm({ idPrefix, anchorId }: SignupFormProps) {
         id={anchorId}
         className="scroll-mt-24 rounded-2xl border border-border bg-card p-5 shadow-[var(--shadow-brand)] sm:p-7"
       >
-        <span className="inline-flex items-center gap-2 rounded-full bg-primary/15 px-3 py-1 text-[0.7rem] font-bold tracking-[0.18em] text-primary-text uppercase">
+        <span className="inline-flex items-center gap-2 rounded-full bg-primary/15 px-3 py-1 text-[0.7rem] font-bold tracking-[0.18em] text-primary uppercase">
           Acesso gratuito
         </span>
         <h3 className="mt-3 font-display text-2xl leading-tight font-black sm:text-3xl">
@@ -359,7 +359,7 @@ export function SignupForm({ idPrefix, anchorId }: SignupFormProps) {
               comunicações da campanha por WhatsApp, conforme a{" "}
               <a
                 href="/privacidade"
-                className="rounded text-primary-text underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                className="rounded text-primary underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
               >
                 Política de Privacidade
               </a>

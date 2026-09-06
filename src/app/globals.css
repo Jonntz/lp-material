@@ -6,16 +6,20 @@
 
 /* ---------------------------------------------------------------------------
  * Identidade visual — Matheus Biancardine (CAMPANHA)
- *
  * Fonte: "Manual de marca - campanha Matheus Biancardine.pdf".
- * Paleta oficial, seis cores:
- *   #052E3F navy · #03748C teal · #63B32F lima · #1CA638 verde
- *   #EC671B laranja · #FDC730 amarelo
  *
- * Este manual substitui o PDF de PRÉ-campanha (navy #012E40 / verde #29EA28),
- * que valeu até aqui. A escala de superfícies derivada (ink, card, border,
- * muted) é a mesma que o site de referência usava — ela já foi desenhada em
- * cima destas seis cores.
+ * PAPÉIS (definidos pelo cliente):
+ *   fundo    #052E3F navy · #03748C teal
+ *   apoio    #63B32F lima · #1CA638 verde   → botões, links, faixas
+ *   detalhe  #EC671B laranja · #FDC730 amarelo
+ *
+ * O que cada cor aguenta, medido (`pnpm check:contrast`):
+ *   lima    passa como TEXTO em todas as superfícies (navy 5.5 · card 4.6)
+ *           e como PREENCHIMENTO com o ink por cima (5.9)
+ *   verde   preenchimento com ink (4.9); como texto só em tamanho grande
+ *   amarelo o melhor texto de destaque (navy 9.1 · card 7.7)
+ *   laranja detalhe de preenchimento; como texto pequeno reprova (3.7 no card)
+ *   teal    fundo que só aceita BRANCO por cima (5.2) — nada de texto secundário
  * ------------------------------------------------------------------------- */
 
 @theme inline {
@@ -56,10 +60,9 @@
   --color-brand-navy: var(--brand-navy);
   --color-brand-teal: var(--brand-teal);
   --color-brand-lima: var(--brand-lima);
-  --color-brand-green: var(--brand-green);
+  --color-brand-verde: var(--brand-verde);
   --color-brand-orange: var(--brand-orange);
   --color-brand-yellow: var(--brand-yellow);
-  --color-primary-text: var(--primary-text);
 
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
@@ -77,32 +80,29 @@
   --brand-navy: #052e3f;
   --brand-teal: #03748c;
   --brand-lima: #63b32f;
-  --brand-green: #1ca638;
+  --brand-verde: #1ca638;
   --brand-orange: #ec671b;
   --brand-yellow: #fdc730;
 
-  /* --- tokens semânticos (tema único escuro) --- */
+  /* --- fundo --- */
   --background: #052e3f;
   --foreground: #f7fbfc;
-
   --ink: #042735;
   --ink-soft: #073b4f;
-
   --card: #073b4f;
   --card-foreground: #f7fbfc;
   --popover: #073b4f;
   --popover-foreground: #f7fbfc;
 
-  --primary: #ec671b;
-  /*
-   * O texto do CTA é o ink, não o navy de fundo: ink sobre o laranja dá 4.84:1
-   * e passa em AA; o navy #052E3F daria 4.44:1 e reprovaria por um triz.
-   */
+  /* --- apoio: o lima é a cor de ação --- */
+  --primary: #63b32f;
   --primary-foreground: #042735;
 
+  /* teal: fundo de faixa e bloco decorativo. Só branco por cima. */
   --secondary: #03748c;
   --secondary-foreground: #f7fbfc;
 
+  /* --- detalhe --- */
   --accent: #fdc730;
   --accent-foreground: #042735;
 
@@ -114,30 +114,13 @@
 
   --border: #0f5468;
   --input: #0a4356;
-  --ring: #ec671b;
+  --ring: #63b32f;
 
   /*
-   * Laranja para TEXTO PEQUENO sobre superfície escura.
-   *
-   * O laranja do manual é uma cor de preenchimento excelente e um texto
-   * pequeno ruim: sobre o card #073B4F ele dá 3.73:1, abaixo dos 4.5:1 que a
-   * WCAG 1.4.3 exige. Este tom é 15% mais claro — o mínimo que passa nas três
-   * superfícies (bg 5.4:1, card 4.5:1, ink 5.9:1) — e a diferença é
-   * imperceptível nos tamanhos em que ele aparece (11px a 14px).
-   *
-   * Use `--primary` em preenchimento, botão, anel de foco e texto GRANDE
-   * (título, números das estatísticas). Use este em rótulo, badge e numeração.
-   */
-  --primary-text: #ff771f;
-
-  /*
-   * Borda dos controles de formulário (inputs, checkbox).
-   *
-   * A WCAG 2.1 §1.4.11 exige 3:1 para o contorno de componentes de interface.
-   * O `--border` do site é discreto de propósito e serve para bordas
-   * decorativas — cards e divisórias, que a norma não cobre. Subiu de #3C859F
-   * para cá porque o card ficou mais claro nesta paleta e o valor antigo caiu
-   * para 2.89:1 sobre ele. Agora: ink 4.5:1, card 3.5:1, fundo 4.1:1.
+   * Borda dos controles de formulário. A WCAG 2.1 §1.4.11 exige 3:1 para
+   * contorno de componente; o `--border` é discreto de propósito e serve para
+   * bordas decorativas, que a norma não cobre.
+   * Aqui: ink 4.5:1 · card 3.5:1 · fundo 4.1:1.
    */
   --control-border: #4a93ac;
 
@@ -162,9 +145,8 @@
   --card-foreground: #f7fbfc;
   --popover: #073b4f;
   --popover-foreground: #f7fbfc;
-  --primary: #ec671b;
+  --primary: #63b32f;
   --primary-foreground: #042735;
-  --primary-text: #ff771f;
   --secondary: #03748c;
   --secondary-foreground: #f7fbfc;
   --accent: #fdc730;
@@ -175,7 +157,7 @@
   --destructive-foreground: #042735;
   --border: #0f5468;
   --input: #0a4356;
-  --ring: #ec671b;
+  --ring: #63b32f;
   --control-border: #4a93ac;
 }
 
@@ -298,6 +280,26 @@
 
   .cta-pulsante {
     will-change: transform, filter;
+  }
+
+  /*
+   * Faixa diagonal com as seis cores — o grafismo que o manual usa na página de
+   * paleta e na peça conceito.
+   *
+   * `repeating-linear-gradient` com paradas duras desenha as barras num único
+   * elemento: sem filhos, sem imagem, sem custo de layout. As larguras são
+   * desiguais de propósito, para o padrão não virar listra de código de barras.
+   */
+  .brand-bands {
+    background-image: repeating-linear-gradient(
+      115deg,
+      var(--brand-teal) 0 46px,
+      var(--brand-verde) 46px 78px,
+      var(--brand-lima) 78px 116px,
+      var(--brand-yellow) 116px 140px,
+      var(--brand-orange) 140px 162px,
+      var(--brand-navy) 162px 208px
+    );
   }
 
   /* a faixa é duplicada no DOM; translateX(-50%) recoloca no ponto de partida */

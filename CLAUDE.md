@@ -46,43 +46,43 @@ Fonte da verdade: **`Manual de marca - campanha Matheus Biancardine.pdf`**.
 > (navy `#012E40`, verde `#29EA28`). Ele **não vale mais**. O manual de campanha o substitui, e
 > foi ele que o site de referência da Lovable já usava desde o início.
 
-### Paleta — as seis cores do manual
+### Paleta — as seis cores e seus papéis
 
-| Cor | Hex | Papel na UI |
+Os papéis foram definidos pelo cliente:
+
+| Papel | Cores | Onde |
 |---|---|---|
-| Navy | `#052E3F` | `--background` |
-| Teal | `#03748C` | `--secondary` — faixa marquee do meio, **nunca texto** (2.6:1) |
-| Lima | `#63B32F` | numeração `02` dos cards, estatística `1º`, logo (4.6:1 no card) |
-| Verde | `#1CA638` | só preenchimento — 3.75:1 no card reprova como texto pequeno |
-| Laranja | `#EC671B` | `--primary` e `--ring` — CTA, preenchimento, foco |
-| Amarelo | `#FDC730` | `--accent` — numeração `03`, estatística `853` (7.7:1 no card) |
+| **Fundo** | `#052E3F` navy · `#03748C` teal | `--background` · `--secondary` (faixa marquee) |
+| **Apoio** | `#63B32F` lima · `#1CA638` verde | `--primary` (CTA, links, faixa) · chips e preenchimentos |
+| **Detalhe** | `#EC671B` laranja · `#FDC730` amarelo | `--accent`, numeração, estatísticas, faixa diagonal |
 
-Superfícies derivadas (`--ink`, `--card`, `--border`, `--muted`…) usam a mesma escala do site de
-referência, que já foi desenhada em cima destas seis cores.
+O que cada cor aguenta, medido (`pnpm check:contrast`, 22 pares):
 
-### O laranja do manual não serve para texto pequeno
-
-`#EC671B` é ótimo em preenchimento e ruim em texto pequeno:
-
-| sobre | contraste | veredito |
+| Cor | Como texto | Como preenchimento (texto `ink` por cima) |
 |---|---|---|
-| `--background` `#052E3F` | 4.44:1 | reprova em AA (exige 4.5) por um triz |
-| `--card` `#073B4F` | **3.73:1** | reprova com folga — e é onde ficam a numeração dos cards e o badge |
-| `--ink` `#042735` | 4.84:1 | passa |
+| Lima `#63B32F` | ✅ em tudo — navy 5.5 · card 4.6 · ink 5.9 | ✅ 5.95 |
+| Verde `#1CA638` | só em tamanho grande — card 3.75 | ✅ 4.87 |
+| Amarelo `#FDC730` | ✅ o melhor — navy 9.1 · card 7.7 | ✅ 9.94 |
+| Laranja `#EC671B` | só em tamanho grande — card 3.73 | ✅ 4.84 |
+| Teal `#03748C` | ❌ nunca | só com **branco** por cima (5.19) |
 
-Daí dois tokens, e a regra de uso é simples:
+Duas consequências práticas:
 
-- **`--primary` (`#EC671B`, a cor exata do manual)** — preenchimento, botão, anel de foco e
-  **texto grande**: o `<h1>` e os números das estatísticas (24px+).
-- **`--primary-text` (`#FF771F`)** — **texto pequeno** sobre superfície escura: kickers, badge
-  "acesso gratuito", numeração `01`–`04`, links. É 15% mais claro, o mínimo que passa nas três
-  superfícies, e a diferença é imperceptível nos tamanhos em que aparece (11–14px).
+- **O lima passa como texto em qualquer superfície do site.** Por isso o token
+  `--primary-text`, criado quando a cor de ação era o laranja, pôde ser retirado —
+  `text-primary` voltou a bastar em toda parte.
+- **Laranja e verde entram como preenchimento, não como texto pequeno.** Foi o que
+  destravou os dois na numeração dos cards: em vez de número colorido (3.7:1, reprova),
+  a numeração virou **chip preenchido com o número em `ink`**, e aí as quatro cores passam.
 
-Duas consequências que não podem ser desfeitas por engano:
+### Grafismo: a faixa diagonal
 
-- **`--primary-foreground` é o `--ink` `#042735`, não o navy do fundo.** Ink sobre o laranja dá
-  4.84:1; o navy daria 4.44:1 e reprovaria. O botão CTA é texto quase-preto sobre laranja.
-- **`pnpm check:contrast` é o guarda** — 21 pares, incluindo os três de `--primary-text`.
+`.brand-bands` (em `globals.css`) desenha a faixa diagonal com as seis cores — o
+grafismo da página de paleta e da peça conceito do manual. É um
+`repeating-linear-gradient` com paradas duras: um elemento, sem filhos, sem imagem.
+O componente `<BrandBands />` a usa em três pontos (abaixo do marquee de abertura,
+entre o bloco do material e o do candidato, e antes do rodapé). É `aria-hidden` —
+puramente decorativa.
 
 ### Logos
 
@@ -379,6 +379,18 @@ limite de sessão). Scripts de medição ficaram no scratchpad, fora do reposit�
 - **`src/lib/env.test.ts`** — 11 testes cobrindo as três formas de PEM aceitas, a recusa do
   placeholder do `.env.example` (regressão da Onda 3) e a garantia de que nenhum valor de
   variável vaza na mensagem de erro. Suíte: **100 testes**.
+
+### Onda 7 — papéis de cor e exploração visual
+
+- **Papéis redefinidos pelo cliente**: navy e teal viram fundo, os dois verdes viram
+  apoio (botões, links, faixas), laranja e amarelo viram detalhe. `--primary` passou a
+  ser o lima `#63B32F`.
+- **`--primary-text` retirado.** Ele só existia porque o laranja reprovava como texto
+  pequeno; o lima passa em todas as superfícies. 12 arquivos revertidos para `text-primary`.
+- **Numeração dos cards virou chip preenchido**, com o número em `ink`. Isso destravou o
+  laranja e o verde ali, que como texto pequeno reprovavam.
+- **`<BrandBands />`** — faixa diagonal com as seis cores, em três pontos da página.
+- Token `--brand-green` renomeado para `--brand-verde`, coerente com `--brand-lima`.
 
 ### Onda 6 — manual de marca da campanha
 

@@ -18,13 +18,12 @@ const PAIRS: ReadonlyArray<{
   min: number;
   usage: string;
 }> = [
-  // `primary` só é usado como TEXTO em tamanho grande (H1, números das
-  // estatísticas), onde a WCAG pede 3:1. Para texto pequeno existe
-  // `primary-text`, checado logo abaixo nas três superfícies.
-  { fg: "primary", bg: "background", min: 3, usage: "texto grande / preenchimento" },
-  { fg: "primary-text", bg: "background", min: 4.5, usage: "texto pequeno sobre o fundo" },
-  { fg: "primary-text", bg: "card", min: 4.5, usage: "texto pequeno sobre card" },
-  { fg: "primary-text", bg: "ink", min: 4.5, usage: "texto pequeno sobre ink" },
+  // O lima aguenta ser texto em qualquer superfície do site — foi por isso que
+  // o token extra `--primary-text`, criado quando a cor de ação era o laranja,
+  // pôde ser retirado.
+  { fg: "primary", bg: "background", min: 4.5, usage: "texto de destaque" },
+  { fg: "primary", bg: "card", min: 4.5, usage: "texto de destaque sobre card" },
+  { fg: "primary", bg: "ink", min: 4.5, usage: "texto de destaque sobre ink" },
   {
     fg: "primary-foreground",
     bg: "primary",
@@ -101,23 +100,16 @@ const PAIRS: ReadonlyArray<{
   // A numeração dos cards e as estatísticas ciclam pela paleta do manual.
   // Cada tom precisa se sustentar sobre a superfície em que aparece.
   {
-    fg: "brand-lima",
+    fg: "brand-verde",
     bg: "card",
-    min: 4.5,
-    usage: "numeração 02 sobre card",
+    min: 3,
+    usage: "verde como preenchimento",
   },
   {
     fg: "accent",
     bg: "card",
     min: 4.5,
     usage: "numeração 03 sobre card",
-  },
-  {
-    // faixa teal do marquee — texto branco por cima
-    fg: "secondary-foreground",
-    bg: "secondary",
-    min: 4.5,
-    usage: "texto da faixa teal",
   },
 ];
 

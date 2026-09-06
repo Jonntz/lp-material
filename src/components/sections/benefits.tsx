@@ -1,18 +1,18 @@
 import { cn } from "@/lib/utils";
 
 /**
- * Cor da numeração de cada card, ciclando pela paleta do manual.
+ * A numeração é um chip preenchido, uma cor do manual por card.
  *
- * Só entram tons que passam em AA sobre o card `#073B4F`, onde eles vivem:
- * laranja-texto 4.53:1 · lima 4.59:1 · amarelo 7.66:1. O verde `#1CA638`
- * ficou de fora porque dá 3.75:1 ali — ele serve como preenchimento, não
- * como texto pequeno.
+ * Como FUNDO as quatro cores funcionam — o texto é sempre o `ink`, e todas
+ * passam em AA por cima dele: lima 5.95:1 · verde 4.87:1 · amarelo 9.94:1 ·
+ * laranja 4.84:1. Foi o que destravou o laranja e o verde aqui: como texto
+ * pequeno os dois reprovavam sobre o card (3.7:1).
  */
-const NUMBER_COLORS = [
-  "text-primary-text",
-  "text-brand-lima",
-  "text-accent",
-  "text-primary-text",
+const NUMBER_CHIPS = [
+  "bg-brand-lima",
+  "bg-brand-verde",
+  "bg-accent",
+  "bg-brand-orange",
 ] as const;
 
 const BENEFITS = [
@@ -61,8 +61,8 @@ export function Benefits() {
             >
               <span
                 className={cn(
-                  "font-display text-sm font-black",
-                  NUMBER_COLORS[index % NUMBER_COLORS.length],
+                  "inline-flex size-9 items-center justify-center rounded-lg font-display text-sm font-black text-primary-foreground",
+                  NUMBER_CHIPS[index % NUMBER_CHIPS.length],
                 )}
               >
                 {String(index + 1).padStart(2, "0")}

@@ -19,7 +19,7 @@ export function SiteHeader() {
           sizes="(min-width: 640px) 11rem, 8rem"
           priority
         />
-        <p className="mt-5 text-[0.68rem] font-bold tracking-[0.34em] text-primary-text uppercase sm:text-sm">
+        <p className="mt-5 text-[0.68rem] font-bold tracking-[0.34em] text-primary uppercase sm:text-sm">
           {SITE.role}
         </p>
         {/*
@@ -32,7 +32,7 @@ export function SiteHeader() {
         <p className="font-display text-[24vw] leading-[0.82] font-black tracking-tighter text-foreground pt-[0.1em] pb-[0.07em] sm:text-[9rem] lg:text-[11rem]">
           {SITE.number}
         </p>
-        <p className="mt-2 font-display text-lg font-black tracking-[0.14em] text-primary-text uppercase sm:text-2xl">
+        <p className="mt-2 font-display text-lg font-black tracking-[0.14em] text-primary uppercase sm:text-2xl">
           {SITE.candidate}
         </p>
       </div>

@@ -6,14 +6,14 @@ import fotoLp from "@/assets/foto-lp.jpg";
 import { SITE } from "@/config/site";
 
 /**
- * Uma cor do manual por estatística. Aqui o texto é 24px+ (grande pela WCAG,
- * que pede 3:1), então o verde `#1CA638` também cabe — ele só não serve em
- * texto pequeno.
+ * Uma cor do manual por estatística. O texto é 24px+ — grande pela WCAG, que
+ * pede 3:1 — então o laranja cabe aqui (3.73:1 sobre o card) mesmo não
+ * servindo para texto pequeno.
  */
 const STAT_COLORS = [
   "text-accent",
-  "text-brand-lima",
   "text-primary",
+  "text-brand-orange",
 ] as const;
 
 const STATS = [
@@ -29,7 +29,7 @@ export function CandidateBio() {
       id="candidato"
       className="mx-auto w-full max-w-6xl px-5 py-14 sm:py-20"
     >
-      <span className="text-[0.7rem] font-bold tracking-[0.24em] text-primary-text uppercase">
+      <span className="text-[0.7rem] font-bold tracking-[0.24em] text-primary uppercase">
         Quem está pedindo seu voto
       </span>
       <div className="mt-6 grid gap-8 lg:grid-cols-2 lg:items-center">

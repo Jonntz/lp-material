@@ -53,12 +53,12 @@ export function SiteFooter() {
 
         <Link
           href="/privacidade"
-          className="mt-6 inline-block rounded px-2 py-1.5 text-sm text-muted-foreground underline underline-offset-4 transition hover:text-primary-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+          className="mt-6 inline-block rounded px-2 py-1.5 text-sm text-muted-foreground underline underline-offset-4 transition hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
         >
           Política de Privacidade
         </Link>
 
-        <p className="mt-8 font-display text-sm leading-relaxed font-black text-primary-text uppercase sm:text-base">
+        <p className="mt-8 font-display text-sm leading-relaxed font-black text-primary uppercase sm:text-base">
           {LEGAL.electoralNotice}
         </p>
         <p className="mx-auto mt-5 max-w-3xl text-sm leading-relaxed font-semibold text-foreground">

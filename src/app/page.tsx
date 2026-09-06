@@ -2,6 +2,7 @@ import { Benefits } from "@/components/sections/benefits";
 import { CandidateBio } from "@/components/sections/candidate-bio";
 import { FinalCta } from "@/components/sections/final-cta";
 import { HeroIntro } from "@/components/sections/hero-intro";
+import { BrandBands } from "@/components/sections/brand-bands";
 import { Manifesto } from "@/components/sections/manifesto";
 import {
   MARQUEE_CREDENTIALS,
@@ -30,6 +31,7 @@ export default function Home() {
       <SocialRail />
 
       <Marquee items={MARQUEE_TOP} speed="fast" />
+      <BrandBands />
 
       <main>
         <SiteHeader />
@@ -43,6 +45,7 @@ export default function Home() {
 
         <Manifesto />
         <Benefits />
+        <BrandBands size="thick" />
         <CandidateBio />
 
         <Marquee items={MARQUEE_CREDENTIALS} speed="fast" variant="soft" />
@@ -52,6 +55,7 @@ export default function Home() {
         </FinalCta>
       </main>
 
+      <BrandBands />
       <SiteFooter />
       <MobileCtaBar />
     </div>

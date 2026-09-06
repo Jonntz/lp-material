@@ -56,7 +56,7 @@ export function SocialDrawerPanel({
                 <SheetClose asChild>
                   <a
                     href={link.href}
-                    className="block rounded-lg px-3 py-3 font-display text-lg font-black text-foreground transition hover:bg-primary/10 hover:text-primary-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                    className="block rounded-lg px-3 py-3 font-display text-lg font-black text-foreground transition hover:bg-primary/10 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
                   >
                     {link.label}
                   </a>
