@@ -11,22 +11,25 @@ import {
 } from "react";
 
 import { submitLead, type SubmitState } from "@/actions/submit-lead";
-import dynamic from "next/dynamic";
 
 import { CityCombobox } from "@/components/city-combobox";
+/*
+ * Import estático de propósito, não `next/dynamic`.
+ *
+ * O modal é a recompensa do cadastro: sem ele a pessoa preenche, os dados vão
+ * para a planilha e a tela não devolve nada — o pior desfecho possível numa
+ * landing de captação. Como `next/dynamic`, ele virava um chunk separado, e
+ * qualquer redeploy enquanto alguém está com a página aberta invalida o hash
+ * desse chunk: o `import()` responde 404 e o modal nunca aparece, mesmo com o
+ * cadastro gravado. São 1,8 KB gzip — não vale trocar isso por um ponto de
+ * falha no único momento que a página existe para produzir.
+ */
+import { SuccessDialog } from "@/components/success-dialog";
 import { Field, FieldError } from "@/components/ui/field";
+import { POST_SIGNUP_LINKS } from "@/config/site";
 import { FIELD_INPUT_CLASS, FIELD_LABEL_CLASS } from "@/lib/form-styles";
 import { formatPhone, PHONE_MAX_LENGTH, unformatPhone } from "@/lib/phone";
 import { firstError, type FieldName } from "@/lib/validation";
-
-/**
- * O modal só existe depois de um cadastro bem-sucedido, então o Dialog do Radix
- * fica fora do bundle inicial.
- */
-const SuccessDialog = dynamic(
-  () => import("@/components/success-dialog").then((m) => m.SuccessDialog),
-  { ssr: false },
-);
 
 /**
  * Checkbox nativo estilizado. O "check" é um SVG embutido em `background-image`
@@ -384,6 +387,40 @@ export function SignupForm({ idPrefix, anchorId }: SignupFormProps) {
             e-mail e WhatsApp, conforme o aviso de privacidade no rodapé.
           </p>
         </form>
+
+        {/*
+          Rede de segurança: fechar o modal não pode destruir o acesso ao
+          material. Quem já se cadastrou continua vendo os dois links aqui,
+          dentro do card, mesmo depois de dispensar o modal.
+        */}
+        {state.status === "success" ? (
+          <div
+            className="mt-5 rounded-xl border border-primary/40 bg-primary/10 p-4"
+            aria-live="polite"
+          >
+            <p className="font-display text-sm font-black text-primary uppercase">
+              Cadastro confirmado
+            </p>
+            <div className="mt-3 flex flex-col gap-2">
+              <a
+                href={POST_SIGNUP_LINKS.linktree.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-lg bg-primary px-4 py-2.5 text-center font-display text-sm font-black text-primary-foreground uppercase focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+              >
+                {POST_SIGNUP_LINKS.linktree.label}
+              </a>
+              <a
+                href={POST_SIGNUP_LINKS.vakinha.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-lg border border-control-border px-4 py-2.5 text-center font-display text-sm font-black text-foreground uppercase focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+              >
+                {POST_SIGNUP_LINKS.vakinha.label}
+              </a>
+            </div>
+          </div>
+        ) : null}
       </div>
 
       {successOpen ? (

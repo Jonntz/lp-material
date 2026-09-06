@@ -380,6 +380,30 @@ limite de sessão). Scripts de medição ficaram no scratchpad, fora do reposit�
   placeholder do `.env.example` (regressão da Onda 3) e a garantia de que nenhum valor de
   variável vaza na mensagem de erro. Suíte: **100 testes**.
 
+### Onda 8 — modal de sucesso não aparecia em produção
+
+Sintoma: o cadastro gravava na planilha e o modal não abria. Reproduzido nunca
+localmente (nem em `next start` com as credenciais reais), o que já apontava para o
+ambiente, não para a lógica.
+
+**Causa.** O `SuccessDialog` era carregado por `next/dynamic`, ou seja, um chunk
+separado buscado no instante do envio. Todo deploy gera hashes novos: quem estava
+com a página aberta quando saiu um deploy pedia um arquivo que não existia mais. O
+`import()` respondia 404, o modal nunca renderizava — e, como a Server Action já
+tinha rodado, os dados iam para a planilha do mesmo jeito. Casa exatamente com o
+sintoma, e houve vários deploys seguidos no dia.
+
+**Correções.**
+1. `SuccessDialog` virou **import estático**. Eram 1,8 KB gzip — não vale trocar
+   isso por um ponto de falha no único momento em que a página existe para produzir.
+   Confirmado no navegador: o envio não dispara mais nenhuma requisição de chunk
+   (antes eram duas).
+2. **Painel inline dentro do card**, com os dois links, para quem já se cadastrou.
+   Fechar o modal deixava de dar acesso ao material — agora não destrói mais nada.
+
+O menu lateral continua em `next/dynamic` de propósito: é bem maior (Sheet do Radix)
+e falhar nele é recuperável, a pessoa rola a página. O modal não tem plano B.
+
 ### Onda 7 — papéis de cor e exploração visual
 
 - **Papéis redefinidos pelo cliente**: navy e teal viram fundo, os dois verdes viram
