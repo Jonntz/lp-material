@@ -379,6 +379,40 @@ limite de sessão). Scripts de medição ficaram no scratchpad, fora do reposit�
   placeholder do `.env.example` (regressão da Onda 3) e a garantia de que nenhum valor de
   variável vaza na mensagem de erro. Suíte: **100 testes**.
 
+### Onda 11 — apresentação de slides na foto principal
+
+A foto do topo virou uma apresentação que troca a cada 7 segundos entre as fotos de
+`src/assets/`. Componente: `src/components/hero-slideshow.tsx`; lista em
+`src/config/hero-slides.ts` — para acrescentar uma foto, importe e some à lista.
+
+Três coisas que o formato das fotos e as normas impuseram:
+
+1. **Proporção fixa no container.** As fotos vêm em formatos diferentes: `foto-lp` é
+   paisagem 3:2 e quatro são retrato 2:3. Com altura automática o layout saltaria a
+   cada troca. A caixa é `4:5` no celular e `3:2` no desktop, com `object-cover` e
+   `object-position: center 18%` — nos retratos isso mostra de 10% a 55% da foto,
+   deixando o rosto no terço superior com folga acima da cabeça. Centralizar
+   cortaria a testa. **CLS medido: 0,0000**, incluindo duas trocas.
+2. **Carregamento progressivo.** Só a primeira foto entra no HTML inicial, com
+   `priority` — ela é o LCP. As seguintes montam uma de cada vez, sempre uma à
+   frente da que está na tela. Verificado no navegador: 2 fotos na carga inicial, a
+   3ª só quando a 1ª troca acontece. Montar as seis de uma vez baixaria vários
+   megabytes antes da primeira pintura. **LCP: 72 ms.**
+3. **Dá para pausar.** A WCAG 2.2.2 exige um jeito de parar conteúdo que se atualiza
+   sozinho por mais de 5 segundos, e aqui são 7. Botão no canto da foto, com
+   `aria-pressed`. Quem pediu `prefers-reduced-motion: reduce` começa com a
+   apresentação já parada.
+
+Acessibilidade: só a foto visível tem `alt`; as outras ficam com `alt=""` e
+`aria-hidden`, para o leitor de tela enxergar uma imagem só e não ser interrompido a
+cada troca.
+
+Os arquivos foram renomeados de `IMG_82xx.JPEG` para nomes descritivos em minúsculas
+(`foto-centro-historico.jpg` etc.). A extensão em maiúsculas não casava com a
+declaração de módulo do `next-env.d.ts` e o TypeScript não resolvia o import.
+
+`novo-logo.png` e as pastas `logo/` e `PNG/` são marca, não fotografia, e ficam fora.
+
 ### Onda 10 — fundo verde
 
 O site inteiro passou do fundo navy para **fundo verde**, com o amarelo como cor

@@ -1,7 +1,8 @@
 import Image from "next/image";
 
-import fotoLp from "@/assets/foto-lp.jpg";
 import novoLogo from "@/assets/novo-logo.png";
+import { HeroSlideshow } from "@/components/hero-slideshow";
+import { HERO_SLIDES } from "@/config/hero-slides";
 import { SITE } from "@/config/site";
 
 /**
@@ -38,17 +39,7 @@ export function SiteHeader() {
       </div>
 
       <div className="mx-auto mt-6 w-full max-w-5xl px-5">
-        <div className="relative overflow-hidden rounded-2xl border border-border bg-ink-soft">
-          <Image
-            src={fotoLp}
-            alt={`${SITE.candidate}, candidato a ${SITE.role} por ${SITE.stateName}`}
-            className="block h-auto w-full object-contain"
-            sizes="(min-width: 1024px) 64rem, 100vw"
-            placeholder="blur"
-            priority
-          />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background to-transparent" />
-        </div>
+        <HeroSlideshow slides={HERO_SLIDES} />
       </div>
     </header>
   );
