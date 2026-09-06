@@ -13,10 +13,21 @@ const INTERVAL_MS = 7000;
 /** Quanto dura a transição entre uma foto e a seguinte. */
 const FADE_MS = 900;
 
+/** Enquadramento padrão: bom para retrato em que o rosto está no terço superior. */
+const DEFAULT_OBJECT_POSITION = "center 18%";
+
 export type HeroSlide = {
   src: StaticImageData;
   /** Descreve a cena; entra no `alt` só enquanto a foto está visível. */
   alt: string;
+  /**
+   * `object-position` desta foto, quando o padrão não serve.
+   *
+   * O padrão assume o rosto no terço superior do quadro. Em foto onde a pessoa
+   * está mais embaixo — sentada, ou pequena dentro de uma cena ampla — ela
+   * escorregaria para fora do corte. Ver `src/config/hero-slides.ts`.
+   */
+  objectPosition?: string;
 };
 
 type HeroSlideshowProps = {
@@ -33,11 +44,11 @@ type HeroSlideshowProps = {
  *    paisagem 3:2 e a maioria é retrato 2:3. Sem uma caixa de proporção fixa, o
  *    layout saltaria a cada troca e o CLS iria pro alto.
  *
- *    O corte é 3:2 no desktop com `object-position: center 18%`. Nos retratos
- *    2:3 isso mostra de 10% a 55% da foto: o rosto fica no terço superior, com
- *    folga acima da cabeça e sem desperdiçar metade do quadro em fundo.
- *    Centralizar (50%) cortaria a testa. No celular a caixa é 4:5 e os retratos
- *    quase não perdem nada.
+ *    O corte é 3:2 no desktop, e o `object-position` padrão é `center 18%`:
+ *    nos retratos 2:3 isso mostra de 10% a 55% da foto, deixando o rosto no
+ *    terço superior. Fotos em que a pessoa aparece mais embaixo trazem o
+ *    próprio valor — ver `objectPosition` em `src/config/hero-slides.ts`.
+ *    No celular a caixa é 4:5 e os retratos quase não perdem nada.
  *
  * 2. **Carregamento progressivo.** Só a primeira foto entra no HTML inicial,
  *    com `priority` — ela é o LCP da página. As seguintes são montadas uma de
@@ -114,10 +125,13 @@ export function HeroSlideshow({ slides, className }: HeroSlideshowProps) {
             aria-hidden={active ? undefined : true}
             fill
             className={cn(
-              "object-cover object-[center_18%] transition-opacity ease-in-out",
+              "object-cover transition-opacity ease-in-out",
               active ? "opacity-100" : "opacity-0",
             )}
-            style={{ transitionDuration: `${FADE_MS}ms` }}
+            style={{
+              transitionDuration: `${FADE_MS}ms`,
+              objectPosition: slide.objectPosition ?? DEFAULT_OBJECT_POSITION,
+            }}
             sizes="(min-width: 1024px) 64rem, 100vw"
             placeholder="blur"
             priority={i === 0}

@@ -30,6 +30,9 @@ export const HERO_SLIDES: readonly HeroSlide[] = [
   {
     src: fotoCentroHistorico,
     alt: "Retrato ao ar livre, em frente a um prédio histórico",
+    // Com o padrão de 18% ele escorrega para o canto inferior direito e é
+    // cortado no peito — o prédio toma o quadro. Em 45% o rosto centraliza.
+    objectPosition: "center 45%",
   },
   {
     src: fotoEncontro,
@@ -42,6 +45,9 @@ export const HERO_SLIDES: readonly HeroSlide[] = [
   {
     src: fotoEntrevista,
     alt: "Sentado ao microfone, durante entrevista, com bandeiras ao fundo",
+    // Ele está sentado e baixo no quadro: com 18% aparecia só o topo da cabeça
+    // no canto esquerdo. Em 60% entra o busto inteiro, com o microfone.
+    objectPosition: "center 60%",
   },
   {
     src: fotoSentado,

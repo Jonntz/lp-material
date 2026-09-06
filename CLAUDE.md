@@ -390,9 +390,20 @@ Três coisas que o formato das fotos e as normas impuseram:
 1. **Proporção fixa no container.** As fotos vêm em formatos diferentes: `foto-lp` é
    paisagem 3:2 e quatro são retrato 2:3. Com altura automática o layout saltaria a
    cada troca. A caixa é `4:5` no celular e `3:2` no desktop, com `object-cover` e
-   `object-position: center 18%` — nos retratos isso mostra de 10% a 55% da foto,
-   deixando o rosto no terço superior com folga acima da cabeça. Centralizar
-   cortaria a testa. **CLS medido: 0,0000**, incluindo duas trocas.
+   `object-position: center 18%` como padrão — nos retratos isso mostra de 10% a 55%
+   da foto, deixando o rosto no terço superior. **CLS medido: 0,0000**.
+
+   **O padrão não serve para toda foto.** Ele assume a pessoa no terço superior do
+   quadro; quando ela está mais embaixo, escorrega para fora do corte. Duas trazem o
+   próprio `objectPosition` em `hero-slides.ts`:
+
+   | Foto | Valor | Por quê |
+   |---|---|---|
+   | `foto-centro-historico` | `center 45%` | com 18% ele saía no canto inferior direito, cortado no peito, e o prédio tomava o quadro |
+   | `foto-entrevista` | `center 60%` | está sentado e baixo no quadro; com 18% aparecia só o topo da cabeça no canto esquerdo |
+
+   Para calibrar uma foto nova: renderize o corte antes de decidir. Nessas duas o
+   valor saiu de comparar 18/35/45/55/65% lado a lado, não de estimativa.
 2. **Carregamento progressivo.** Só a primeira foto entra no HTML inicial, com
    `priority` — ela é o LCP. As seguintes montam uma de cada vez, sempre uma à
    frente da que está na tela. Verificado no navegador: 2 fotos na carga inicial, a
