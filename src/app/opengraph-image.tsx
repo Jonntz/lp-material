@@ -71,8 +71,8 @@ export default async function OpenGraphImage() {
           }}
         >
           <div style={{ width: 120, height: "100%", background: "#03738C" }} />
-          <div style={{ width: 90, height: "100%", background: "#11A837" }} />
-          <div style={{ width: 130, height: "100%", background: "#29EA28" }} />
+          <div style={{ width: 90, height: "100%", background: "#BE571A" }} />
+          <div style={{ width: 130, height: "100%", background: "#F37021" }} />
           <div style={{ width: 60, height: "100%", background: "#EBE438" }} />
         </div>
 
@@ -82,7 +82,7 @@ export default async function OpenGraphImage() {
               display: "flex",
               fontSize: 26,
               letterSpacing: 12,
-              color: "#29EA28",
+              color: "#F37021",
               textTransform: "uppercase",
               fontWeight: 900,
             }}
@@ -106,7 +106,7 @@ export default async function OpenGraphImage() {
             style={{
               display: "flex",
               fontSize: 48,
-              color: "#29EA28",
+              color: "#F37021",
               fontWeight: 900,
               letterSpacing: 4,
               textTransform: "uppercase",

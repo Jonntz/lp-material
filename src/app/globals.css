@@ -6,10 +6,15 @@
 
 /* ---------------------------------------------------------------------------
  * Identidade visual — Matheus Biancardine (pré-campanha)
- * Paleta oficial (PDF, pág. 3): #012E40 · #03738C · #29EA28 · #11A837
+ * Paleta do PDF da identidade (pág. 3): #012E40 · #03738C · #29EA28 · #11A837
  * Amarelo de apoio (faixas diagonais / cartão de visita): #EBE438
- * Laranja #F37021 é a cor oficial do Partido Novo e vive APENAS dentro do PNG
- * da logo — nunca como cor de UI.
+ *
+ * DESVIO DELIBERADO: o `--primary` não é o verde do PDF, e sim o laranja
+ * #F37021 do Partido Novo — decisão do cliente, alinhada com o site de
+ * referência, que também usava laranja no CTA. O verde saiu da UI por completo.
+ * Custo registrado: laranja sobre o navy dá 4.9:1 contra os 8.8:1 do verde.
+ * Passa em AA (>= 4.5:1), perde AAA. Por isso `--primary-foreground` TEM de
+ * seguir sendo o navy: branco sobre esse laranja dá 2.9:1 e reprova.
  * ------------------------------------------------------------------------- */
 
 @theme inline {
@@ -49,8 +54,8 @@
   /* cores da marca, disponíveis como utilitários bg-brand-… e text-brand-… */
   --color-brand-navy: var(--brand-navy);
   --color-brand-teal: var(--brand-teal);
-  --color-brand-green: var(--brand-green);
-  --color-brand-green-deep: var(--brand-green-deep);
+  --color-brand-orange: var(--brand-orange);
+  --color-brand-orange-deep: var(--brand-orange-deep);
   --color-brand-yellow: var(--brand-yellow);
   --color-novo-orange: var(--novo-orange);
 
@@ -69,8 +74,8 @@
   /* --- paleta da identidade --- */
   --brand-navy: #012e40;
   --brand-teal: #03738c;
-  --brand-green: #f37021;
-  --brand-green-deep: #f37021;
+  --brand-orange: #f37021;
+  --brand-orange-deep: #be571a;
   --brand-yellow: #ebe438;
   --novo-orange: #f37021;
 
@@ -86,7 +91,7 @@
   --popover: #04384c;
   --popover-foreground: #f1f8fa;
 
-  --primary: #29ea28;
+  --primary: #f37021;
   --primary-foreground: #012e40;
 
   --secondary: #03738c;
@@ -103,7 +108,7 @@
 
   --border: #0b5068;
   --input: #063f55;
-  --ring: #29ea28;
+  --ring: #f37021;
 
   /*
    * Borda dos controles de formulário (inputs, checkbox).
@@ -138,7 +143,7 @@
   --card-foreground: #f1f8fa;
   --popover: #04384c;
   --popover-foreground: #f1f8fa;
-  --primary: #29ea28;
+  --primary: #f37021;
   --primary-foreground: #012e40;
   --secondary: #03738c;
   --secondary-foreground: #f1f8fa;
@@ -150,7 +155,7 @@
   --destructive-foreground: #011e2b;
   --border: #0b5068;
   --input: #063f55;
-  --ring: #29ea28;
+  --ring: #f37021;
   --control-border: #3c859f;
 }
 

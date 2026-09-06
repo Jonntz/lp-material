@@ -46,10 +46,28 @@ Paleta oficial (`IDENTIDADE VISUAL MATHEUS BIANCARDINE.pdf`, pág. 3):
 |---|---|---|
 | Navy | `#012E40` | `--background`, texto sobre botão claro |
 | Teal | `#03738C` | `--secondary` — **só superfície/borda, nunca texto** (2.6:1 sobre navy) |
-| Verde vivo | `#29EA28` | `--primary` — CTA, destaques, foco (8.8:1 sobre navy) |
-| Verde | `#11A837` | apoio, texto secundário (4.6:1) |
+| ~~Verde vivo~~ | ~~`#29EA28`~~ | **fora da UI** — ver desvio abaixo |
+| ~~Verde~~ | ~~`#11A837`~~ | **fora da UI** — ver desvio abaixo |
 | Amarelo | `#EBE438` | `--accent` — badges e números (10.7:1) |
-| Laranja Novo | `#F37021` | cor oficial do partido; **vive só dentro do PNG da logo**, nunca como cor de UI |
+| Laranja Novo | `#F37021` | `--primary` e `--ring` — CTA, destaques, foco (4.9:1 sobre navy) |
+
+### Desvio deliberado: laranja no lugar do verde
+
+O PDF da identidade não tem laranja — a paleta dele é navy/teal/verdes/amarelo. Mesmo assim o
+`--primary` é o **laranja `#F37021` do Partido Novo**, e o verde saiu da UI por completo. Decisão
+do cliente, e alinhada com o site de referência, que também usava laranja no CTA.
+
+O custo está medido: laranja sobre o navy dá **4.9:1** contra os **8.8:1** do verde — passa em
+AA (mínimo 4.5:1), perde AAA. Duas consequências que não podem ser desfeitas por engano:
+
+- **`--primary-foreground` tem de continuar sendo o navy.** Branco sobre esse laranja dá 2.9:1
+  e reprova. O botão CTA é texto navy sobre laranja.
+- **`pnpm check:contrast` é o guarda.** Se alguém escurecer o laranja ou clarear o fundo, os
+  17 pares acusam antes de ir para produção.
+
+Os tokens crus se chamam `--brand-orange` e `--brand-orange-deep` (`#BE571A`, um tom mais escuro
+do mesmo laranja usado só nas faixas diagonais da imagem de Open Graph, para o padrão de 4 faixas
+não virar um bloco chapado).
 
 Tipografia: **Neo Sans Std** (Monotype, comercial) no display, **Barlow** no texto corrido.
 Os `.otf` originais estão em `src/fonts/`; o site carrega `.woff2` com subset latin gerados a
