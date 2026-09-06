@@ -4,7 +4,7 @@
  * Regenerado por `pnpm gen:cities` (scripts/generate-mg-cities.mts).
  *
  * Fonte:  kelvins/municipios-brasileiros (GitHub raw)
- * Gerado: 2026-09-06T00:20:35.790Z
+ * Gerado: 2026-09-06T21:19:37.473Z
  * Total:  853 municípios
  */
 
