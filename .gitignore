@@ -45,3 +45,5 @@ next-env.d.ts
 
 .agents
 .claude
+# arquivo auxiliar com os valores de produção (contém a chave privada)
+.env.vercel

@@ -3,6 +3,30 @@
  * Textos e números vêm da página de referência e da identidade visual.
  */
 
+/**
+ * Endereço público do site, usado em canonical, Open Graph, sitemap e JSON-LD.
+ *
+ * Precedência:
+ * 1. `NEXT_PUBLIC_SITE_URL` — definido à mão. É o que vale quando houver domínio
+ *    próprio, e sobrepõe tudo.
+ * 2. `NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL` — a Vercel injeta sozinha o
+ *    domínio **de produção** do projeto (sem protocolo). Isso evita o pior caso:
+ *    esquecer a variável e publicar o site inteiro com canonical apontando para
+ *    `localhost`, o que tira a página do índice do Google. Note que é a URL de
+ *    produção mesmo em preview — de propósito: preview não deve declarar
+ *    canonical próprio.
+ * 3. localhost, para desenvolvimento.
+ */
+function resolveSiteUrl(): string {
+  const explicit = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (explicit) return explicit.replace(/\/$/, "");
+
+  const vercel = process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL?.trim();
+  if (vercel) return `https://${vercel.replace(/^https?:\/\//, "").replace(/\/$/, "")}`;
+
+  return "http://localhost:3000";
+}
+
 export const SITE = {
   name: "Matheus Biancardine 3055",
   candidate: "Matheus Biancardine",
@@ -21,7 +45,7 @@ export const SITE = {
   ogDescription:
     "Kit de campanha gratuito para apoiadores nas 853 cidades de Minas Gerais. Baixe artes, textos e roteiros prontos.",
   themeColor: "#012E40",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  url: resolveSiteUrl(),
 } as const;
 
 /** Destinos oferecidos no modal exibido após o cadastro. */
