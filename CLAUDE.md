@@ -51,11 +51,11 @@ Fonte da verdade: **`Manual de marca - campanha Matheus Biancardine.pdf`**.
 | Cor | Hex | Papel na UI |
 |---|---|---|
 | Navy | `#052E3F` | `--background` |
-| Teal | `#03748C` | `--secondary` — **só superfície, nunca texto** (2.6:1 sobre o navy) |
-| Lima | `#63B32F` | disponível como `bg-brand-lima`; aparece na logo colorida |
-| Verde | `#1CA638` | disponível como `bg-brand-green` |
+| Teal | `#03748C` | `--secondary` — faixa marquee do meio, **nunca texto** (2.6:1) |
+| Lima | `#63B32F` | numeração `02` dos cards, estatística `1º`, logo (4.6:1 no card) |
+| Verde | `#1CA638` | só preenchimento — 3.75:1 no card reprova como texto pequeno |
 | Laranja | `#EC671B` | `--primary` e `--ring` — CTA, preenchimento, foco |
-| Amarelo | `#FDC730` | `--accent` — badges (9.1:1) |
+| Amarelo | `#FDC730` | `--accent` — numeração `03`, estatística `853` (7.7:1 no card) |
 
 Superfícies derivadas (`--ink`, `--card`, `--border`, `--muted`…) usam a mesma escala do site de
 referência, que já foi desenhada em cima destas seis cores.
@@ -89,14 +89,13 @@ Duas consequências que não podem ser desfeitas por engano:
 `src/assets/PNG/` guarda as 9 variações oficiais em 1080×1350 (36% do canvas é transparência).
 As usadas no site foram recortadas e reduzidas para `src/assets/logo/`:
 
-| Arquivo | Origem | Onde |
-|---|---|---|
-| `matheus-3055-cor.png` | `LOGO MATHEUS 6` | menu lateral e modal de sucesso |
-| `matheus-3055-branco.png` | `LOGO MATHEUS 9` | rodapé |
+Uma só: **`matheus-3055-cor.png`**, recortada de `LOGO MATHEUS 6`, usada no rodapé, no menu
+lateral e no modal de sucesso. O laranja dela é o mesmo do `--primary` e o verde é o `#63B32F`
+do manual, então ela conversa com a logo do Novo em vez de competir.
 
-A variante colorida foi escolhida porque o laranja dela é o mesmo do `--primary` e o verde-lima
-é o `#63B32F` do manual. As variações `01`, `04` e `08` têm "MATHEUS" em tom escuro — são para
-fundo claro e ficam ilegíveis no navy.
+A variante branca (`LOGO MATHEUS 9`) chegou a ser usada no rodapé e saiu: a sombra escura dela
+brigava com o navy. As variações `01`, `04` e `08` têm "MATHEUS" em tom escuro — são para fundo
+claro e somem no navy.
 
 O **hero mantém o "3055" tipográfico gigante**, que é a assinatura do site de referência; a logo
 oficial entra só onde não duplicaria essa informação.
@@ -394,7 +393,13 @@ limite de sessão). Scripts de medição ficaram no scratchpad, fora do reposit�
   antigo caiu para 2.89:1, abaixo dos 3:1 da WCAG 1.4.11.
 - **`--destructive` clareado para `#FF7B7B`** — o anterior dava 4.33:1 dentro do card, onde os
   erros de validação aparecem. Par novo no `check:contrast`, que foi de 17 para 21 pares.
-- **Logos oficiais** em `src/assets/logo/`, no rodapé, no menu lateral e no modal de sucesso.
+- **Logo oficial** (`LOGO MATHEUS 6`) em `src/assets/logo/`, no rodapé, no menu lateral e no
+  modal de sucesso.
+- **As seis cores do manual passaram a aparecer de fato.** Trocar um laranja por outro quase
+  idêntico não muda nada na tela; o que faltava era usar lima, verde e amarelo. A numeração dos
+  cards cicla laranja→lima→amarelo→laranja, as três estatísticas ganham amarelo/lima/laranja e a
+  faixa marquee do meio virou teal. `check:contrast` foi para **24 pares**.
+- Token `--brand-lime` renomeado para `--brand-lima`, que era como o código já o chamava.
 
 ### Onda 5 — tags de medição e redes sociais
 

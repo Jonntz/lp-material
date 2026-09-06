@@ -98,6 +98,27 @@ const PAIRS: ReadonlyArray<{
     min: 4.5,
     usage: "mensagem de erro no card",
   },
+  // A numeração dos cards e as estatísticas ciclam pela paleta do manual.
+  // Cada tom precisa se sustentar sobre a superfície em que aparece.
+  {
+    fg: "brand-lima",
+    bg: "card",
+    min: 4.5,
+    usage: "numeração 02 sobre card",
+  },
+  {
+    fg: "accent",
+    bg: "card",
+    min: 4.5,
+    usage: "numeração 03 sobre card",
+  },
+  {
+    // faixa teal do marquee — texto branco por cima
+    fg: "secondary-foreground",
+    bg: "secondary",
+    min: 4.5,
+    usage: "texto da faixa teal",
+  },
 ];
 
 function readTokens(): Map<string, string> {

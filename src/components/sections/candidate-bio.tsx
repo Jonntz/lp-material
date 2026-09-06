@@ -1,7 +1,20 @@
+import { cn } from "@/lib/utils";
+
 import Image from "next/image";
 
 import fotoLp from "@/assets/foto-lp.jpg";
 import { SITE } from "@/config/site";
+
+/**
+ * Uma cor do manual por estatística. Aqui o texto é 24px+ (grande pela WCAG,
+ * que pede 3:1), então o verde `#1CA638` também cabe — ele só não serve em
+ * texto pequeno.
+ */
+const STAT_COLORS = [
+  "text-accent",
+  "text-brand-lima",
+  "text-primary",
+] as const;
 
 const STATS = [
   { value: String(SITE.cityCount), label: "cidades mineiras no radar" },
@@ -47,12 +60,17 @@ export function CandidateBio() {
             lembrada apenas em ano eleitoral.
           </p>
           <dl className="mt-7 grid grid-cols-3 gap-3">
-            {STATS.map((stat) => (
+            {STATS.map((stat, index) => (
               <div
                 key={stat.value}
                 className="rounded-xl border border-border bg-card p-3 text-center"
               >
-                <dt className="font-display text-2xl font-black text-primary sm:text-3xl">
+                <dt
+                  className={cn(
+                    "font-display text-2xl font-black sm:text-3xl",
+                    STAT_COLORS[index % STAT_COLORS.length],
+                  )}
+                >
                   {stat.value}
                 </dt>
                 <dd className="mt-1 text-[0.7rem] leading-snug text-muted-foreground">

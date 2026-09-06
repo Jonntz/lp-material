@@ -26,8 +26,11 @@ type MarqueeProps = {
   items: readonly string[];
   /** `normal` = 32s por volta, `fast` = 22s. */
   speed?: "normal" | "fast";
-  /** `primary` = faixa verde cheia; `soft` = faixa discreta sobre `ink-soft`. */
-  variant?: "primary" | "soft";
+  /**
+   * `primary` = faixa laranja · `secondary` = faixa teal do manual ·
+   * `soft` = discreta sobre `ink-soft`.
+   */
+  variant?: "primary" | "secondary" | "soft";
 };
 
 /**
@@ -43,15 +46,15 @@ export function Marquee({
   speed = "normal",
   variant = "primary",
 }: MarqueeProps) {
-  const isPrimary = variant === "primary";
 
   return (
     <div
       className={cn(
         "relative overflow-hidden py-3",
-        isPrimary
-          ? "bg-primary text-primary-foreground"
-          : "border-y border-border bg-ink-soft text-foreground",
+        variant === "primary" && "bg-primary text-primary-foreground",
+        variant === "secondary" && "bg-secondary text-secondary-foreground",
+        variant === "soft" &&
+          "border-y border-border bg-ink-soft text-foreground",
       )}
     >
       <div
@@ -70,7 +73,7 @@ export function Marquee({
             <span
               className={cn(
                 "inline-block size-1.5 rounded-full",
-                isPrimary ? "bg-primary-foreground/70" : "bg-primary",
+                variant === "soft" ? "bg-primary" : "bg-current/70",
               )}
             />
           </span>

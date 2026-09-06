@@ -55,7 +55,7 @@
   /* cores da marca, disponíveis como utilitários bg-brand-… e text-brand-… */
   --color-brand-navy: var(--brand-navy);
   --color-brand-teal: var(--brand-teal);
-  --color-brand-lime: var(--brand-lime);
+  --color-brand-lima: var(--brand-lima);
   --color-brand-green: var(--brand-green);
   --color-brand-orange: var(--brand-orange);
   --color-brand-yellow: var(--brand-yellow);
@@ -76,7 +76,7 @@
   /* --- as seis cores do manual, sem alteração --- */
   --brand-navy: #052e3f;
   --brand-teal: #03748c;
-  --brand-lime: #63b32f;
+  --brand-lima: #63b32f;
   --brand-green: #1ca638;
   --brand-orange: #ec671b;
   --brand-yellow: #fdc730;

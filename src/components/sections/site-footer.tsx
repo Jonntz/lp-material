@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import matheusLogo from "@/assets/logo/matheus-3055-branco.png";
+import matheusLogo from "@/assets/logo/matheus-3055-cor.png";
 import novoLogo from "@/assets/novo-logo.png";
 import { activeSocialLinks } from "@/config/social";
 import { LEGAL, SITE } from "@/config/site";

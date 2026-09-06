@@ -1,3 +1,20 @@
+import { cn } from "@/lib/utils";
+
+/**
+ * Cor da numeração de cada card, ciclando pela paleta do manual.
+ *
+ * Só entram tons que passam em AA sobre o card `#073B4F`, onde eles vivem:
+ * laranja-texto 4.53:1 · lima 4.59:1 · amarelo 7.66:1. O verde `#1CA638`
+ * ficou de fora porque dá 3.75:1 ali — ele serve como preenchimento, não
+ * como texto pequeno.
+ */
+const NUMBER_COLORS = [
+  "text-primary-text",
+  "text-brand-lima",
+  "text-accent",
+  "text-primary-text",
+] as const;
+
 const BENEFITS = [
   {
     title: "Artes prontas para redes",
@@ -42,7 +59,12 @@ export function Benefits() {
               key={benefit.title}
               className="rounded-2xl border border-border bg-card p-5 transition hover:border-primary/60 sm:p-6"
             >
-              <span className="font-display text-sm font-black text-primary-text">
+              <span
+                className={cn(
+                  "font-display text-sm font-black",
+                  NUMBER_COLORS[index % NUMBER_COLORS.length],
+                )}
+              >
                 {String(index + 1).padStart(2, "0")}
               </span>
               <h3 className="mt-2 font-display text-lg font-black sm:text-xl">
