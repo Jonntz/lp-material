@@ -40,39 +40,76 @@ pnpm check:contrast   # valida os pares de contraste WCAG da paleta
 
 ## Identidade visual
 
-Paleta oficial (`IDENTIDADE VISUAL MATHEUS BIANCARDINE.pdf`, pág. 3):
+Fonte da verdade: **`Manual de marca - campanha Matheus Biancardine.pdf`**.
+
+> Existe um PDF anterior, `IDENTIDADE VISUAL MATHEUS BIANCARDINE.pdf`, de **pré-campanha**
+> (navy `#012E40`, verde `#29EA28`). Ele **não vale mais**. O manual de campanha o substitui, e
+> foi ele que o site de referência da Lovable já usava desde o início.
+
+### Paleta — as seis cores do manual
 
 | Cor | Hex | Papel na UI |
 |---|---|---|
-| Navy | `#012E40` | `--background`, texto sobre botão claro |
-| Teal | `#03738C` | `--secondary` — **só superfície/borda, nunca texto** (2.6:1 sobre navy) |
-| ~~Verde vivo~~ | ~~`#29EA28`~~ | **fora da UI** — ver desvio abaixo |
-| ~~Verde~~ | ~~`#11A837`~~ | **fora da UI** — ver desvio abaixo |
-| Amarelo | `#EBE438` | `--accent` — badges e números (10.7:1) |
-| Laranja Novo | `#F37021` | `--primary` e `--ring` — CTA, destaques, foco (4.9:1 sobre navy) |
+| Navy | `#052E3F` | `--background` |
+| Teal | `#03748C` | `--secondary` — **só superfície, nunca texto** (2.6:1 sobre o navy) |
+| Lima | `#63B32F` | disponível como `bg-brand-lima`; aparece na logo colorida |
+| Verde | `#1CA638` | disponível como `bg-brand-green` |
+| Laranja | `#EC671B` | `--primary` e `--ring` — CTA, preenchimento, foco |
+| Amarelo | `#FDC730` | `--accent` — badges (9.1:1) |
 
-### Desvio deliberado: laranja no lugar do verde
+Superfícies derivadas (`--ink`, `--card`, `--border`, `--muted`…) usam a mesma escala do site de
+referência, que já foi desenhada em cima destas seis cores.
 
-O PDF da identidade não tem laranja — a paleta dele é navy/teal/verdes/amarelo. Mesmo assim o
-`--primary` é o **laranja `#F37021` do Partido Novo**, e o verde saiu da UI por completo. Decisão
-do cliente, e alinhada com o site de referência, que também usava laranja no CTA.
+### O laranja do manual não serve para texto pequeno
 
-O custo está medido: laranja sobre o navy dá **4.9:1** contra os **8.8:1** do verde — passa em
-AA (mínimo 4.5:1), perde AAA. Duas consequências que não podem ser desfeitas por engano:
+`#EC671B` é ótimo em preenchimento e ruim em texto pequeno:
 
-- **`--primary-foreground` tem de continuar sendo o navy.** Branco sobre esse laranja dá 2.9:1
-  e reprova. O botão CTA é texto navy sobre laranja.
-- **`pnpm check:contrast` é o guarda.** Se alguém escurecer o laranja ou clarear o fundo, os
-  17 pares acusam antes de ir para produção.
+| sobre | contraste | veredito |
+|---|---|---|
+| `--background` `#052E3F` | 4.44:1 | reprova em AA (exige 4.5) por um triz |
+| `--card` `#073B4F` | **3.73:1** | reprova com folga — e é onde ficam a numeração dos cards e o badge |
+| `--ink` `#042735` | 4.84:1 | passa |
 
-Os tokens crus se chamam `--brand-orange` e `--brand-orange-deep` (`#BE571A`, um tom mais escuro
-do mesmo laranja usado só nas faixas diagonais da imagem de Open Graph, para o padrão de 4 faixas
-não virar um bloco chapado).
+Daí dois tokens, e a regra de uso é simples:
 
-Tipografia: **Neo Sans Std** (Monotype, comercial) no display, **Barlow** no texto corrido.
-Os `.otf` originais estão em `src/fonts/`; o site carrega `.woff2` com subset latin gerados a
-partir deles (~15 KB por peso em vez de ~70 KB). Comando de regeneração em `src/fonts/README.md`.
-Só 4 pesos entram no bundle (400/500/700/900) e nenhum itálico, porque o layout não usa.
+- **`--primary` (`#EC671B`, a cor exata do manual)** — preenchimento, botão, anel de foco e
+  **texto grande**: o `<h1>` e os números das estatísticas (24px+).
+- **`--primary-text` (`#FF771F`)** — **texto pequeno** sobre superfície escura: kickers, badge
+  "acesso gratuito", numeração `01`–`04`, links. É 15% mais claro, o mínimo que passa nas três
+  superfícies, e a diferença é imperceptível nos tamanhos em que aparece (11–14px).
+
+Duas consequências que não podem ser desfeitas por engano:
+
+- **`--primary-foreground` é o `--ink` `#042735`, não o navy do fundo.** Ink sobre o laranja dá
+  4.84:1; o navy daria 4.44:1 e reprovaria. O botão CTA é texto quase-preto sobre laranja.
+- **`pnpm check:contrast` é o guarda** — 21 pares, incluindo os três de `--primary-text`.
+
+### Logos
+
+`src/assets/PNG/` guarda as 9 variações oficiais em 1080×1350 (36% do canvas é transparência).
+As usadas no site foram recortadas e reduzidas para `src/assets/logo/`:
+
+| Arquivo | Origem | Onde |
+|---|---|---|
+| `matheus-3055-cor.png` | `LOGO MATHEUS 6` | menu lateral e modal de sucesso |
+| `matheus-3055-branco.png` | `LOGO MATHEUS 9` | rodapé |
+
+A variante colorida foi escolhida porque o laranja dela é o mesmo do `--primary` e o verde-lima
+é o `#63B32F` do manual. As variações `01`, `04` e `08` têm "MATHEUS" em tom escuro — são para
+fundo claro e ficam ilegíveis no navy.
+
+O **hero mantém o "3055" tipográfico gigante**, que é a assinatura do site de referência; a logo
+oficial entra só onde não duplicaria essa informação.
+
+### Tipografia
+
+Hoje: **Neo Sans Std** no display, **Barlow** no texto corrido. Os `.otf` originais estão em
+`src/fonts/`; o site carrega `.woff2` com subset latin (~15 KB por peso em vez de ~70 KB).
+Comando de regeneração em `src/fonts/README.md`. Só 4 pesos (400/500/700/900), sem itálico.
+
+> ⚠️ **Divergência em aberto.** O manual de campanha especifica **AMSI PRO**, não Neo Sans — o
+> Neo Sans veio do PDF de pré-campanha. Trocar depende de alguém fornecer os arquivos da AMSI Pro
+> (também comercial, da Stawix). Enquanto isso o site segue em Neo Sans.
 
 Tokens e animações ficam em `src/app/globals.css`. Os keyframes `cta-pulse`, `cta-blink`,
 `marquee-x` e `rise-in` reproduzem os do site de referência e estão todos dentro de
@@ -343,6 +380,21 @@ limite de sessão). Scripts de medição ficaram no scratchpad, fora do reposit�
 - **`src/lib/env.test.ts`** — 11 testes cobrindo as três formas de PEM aceitas, a recusa do
   placeholder do `.env.example` (regressão da Onda 3) e a garantia de que nenhum valor de
   variável vaza na mensagem de erro. Suíte: **100 testes**.
+
+### Onda 6 — manual de marca da campanha
+
+- **Paleta trocada para o manual de campanha** (`#052E3F` `#03748C` `#63B32F` `#1CA638`
+  `#EC671B` `#FDC730`), que substitui o PDF de pré-campanha. É a mesma paleta que o site de
+  referência já usava — as cores originais dele estavam certas o tempo todo.
+- **`--primary-text` criado** porque o laranja do manual reprova como texto pequeno (3.73:1
+  sobre o card). ~30 ocorrências de `text-primary` em texto pequeno migraram; preenchimentos,
+  ícones e texto grande continuam em `--primary`.
+- **`--primary-foreground` virou `--ink`** para o botão CTA passar em AA (4.84:1).
+- **`--control-border` subiu para `#4A93AC`**: o card ficou mais claro nesta paleta e o valor
+  antigo caiu para 2.89:1, abaixo dos 3:1 da WCAG 1.4.11.
+- **`--destructive` clareado para `#FF7B7B`** — o anterior dava 4.33:1 dentro do card, onde os
+  erros de validação aparecem. Par novo no `check:contrast`, que foi de 17 para 21 pares.
+- **Logos oficiais** em `src/assets/logo/`, no rodapé, no menu lateral e no modal de sucesso.
 
 ### Onda 5 — tags de medição e redes sociais
 

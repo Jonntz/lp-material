@@ -16,7 +16,7 @@ export function CandidateBio() {
       id="candidato"
       className="mx-auto w-full max-w-6xl px-5 py-14 sm:py-20"
     >
-      <span className="text-[0.7rem] font-bold tracking-[0.24em] text-primary uppercase">
+      <span className="text-[0.7rem] font-bold tracking-[0.24em] text-primary-text uppercase">
         Quem está pedindo seu voto
       </span>
       <div className="mt-6 grid gap-8 lg:grid-cols-2 lg:items-center">

@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 import {
   Sheet,
   SheetClose,
@@ -8,6 +10,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { activeSocialLinks } from "@/config/social";
+import matheusLogo from "@/assets/logo/matheus-3055-cor.png";
 import { NAV_LINKS, SITE } from "@/config/site";
 
 type SocialDrawerPanelProps = {
@@ -34,9 +37,16 @@ export function SocialDrawerPanel({
         className="w-[min(20rem,85vw)] border-l border-border bg-card sm:max-w-xs"
       >
         <SheetHeader className="px-6 pt-6 pb-2">
-          <SheetTitle className="font-display text-xs font-black tracking-[0.28em] text-primary uppercase">
-            Menu
-          </SheetTitle>
+          {/* A logo oficial identifica o painel; "Menu" segue existindo para
+              leitor de tela, via sr-only, porque o SheetTitle é obrigatório. */}
+          <SheetTitle className="sr-only">Menu</SheetTitle>
+          <Image
+            src={matheusLogo}
+            alt=""
+            aria-hidden="true"
+            className="h-auto w-40"
+            sizes="10rem"
+          />
         </SheetHeader>
 
         <nav aria-label="Navegação principal" className="px-6">
@@ -46,7 +56,7 @@ export function SocialDrawerPanel({
                 <SheetClose asChild>
                   <a
                     href={link.href}
-                    className="block rounded-lg px-3 py-3 font-display text-lg font-black text-foreground transition hover:bg-primary/10 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                    className="block rounded-lg px-3 py-3 font-display text-lg font-black text-foreground transition hover:bg-primary/10 hover:text-primary-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
                   >
                     {link.label}
                   </a>

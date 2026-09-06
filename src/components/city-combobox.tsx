@@ -322,7 +322,7 @@ export function CityCombobox({
                     <mark
                       className={cn(
                         "bg-transparent font-semibold",
-                        isActive ? "text-primary-foreground" : "text-primary",
+                        isActive ? "text-primary-foreground" : "text-primary-text",
                       )}
                     >
                       {parts[1]}

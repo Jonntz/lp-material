@@ -37,7 +37,7 @@ function Section({
 
 function List({ children }: { children: ReactNode }) {
   return (
-    <ul className="mt-3 flex list-disc flex-col gap-2 pl-5 text-muted-foreground leading-relaxed marker:text-primary">
+    <ul className="mt-3 flex list-disc flex-col gap-2 pl-5 text-muted-foreground leading-relaxed marker:text-primary-text">
       {children}
     </ul>
   );
@@ -51,7 +51,7 @@ export default function PrivacidadePage() {
           faz — não é parecer jurídico. */}
       <Link
         href="/"
-        className="inline-flex items-center gap-2 text-sm font-medium text-primary underline-offset-4 transition-colors hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
+        className="inline-flex items-center gap-2 text-sm font-medium text-primary-text underline-offset-4 transition-colors hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
       >
         <ArrowLeft aria-hidden="true" className="size-4" />
         Voltar para a página inicial
@@ -177,7 +177,7 @@ export default function PrivacidadePage() {
           Para exercer qualquer um deles, escreva para{" "}
           <a
             href={`mailto:${LEGAL.privacyContact}`}
-            className="font-medium text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+            className="font-medium text-primary-text underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
           >
             {LEGAL.privacyContact}
           </a>
@@ -230,7 +230,7 @@ export default function PrivacidadePage() {
             href="https://www.facebook.com/settings?tab=ads"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-medium text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+            className="font-medium text-primary-text underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
           >
             preferências de anúncios da Meta
           </a>{" "}
@@ -239,7 +239,7 @@ export default function PrivacidadePage() {
             href="https://tools.google.com/dlpage/gaoptout"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-medium text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+            className="font-medium text-primary-text underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
           >
             complemento de desativação do Google Analytics
           </a>

@@ -1,6 +1,9 @@
 "use client";
 
-import { ArrowUpRightIcon, HeartHandshakeIcon, PartyPopperIcon } from "lucide-react";
+import Image from "next/image";
+
+import matheusLogo from "@/assets/logo/matheus-3055-cor.png";
+import { ArrowUpRightIcon, HeartHandshakeIcon } from "lucide-react";
 
 import {
   Dialog,
@@ -25,9 +28,15 @@ export function SuccessDialog({ open, onOpenChange }: SuccessDialogProps) {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="border border-border bg-card sm:max-w-md">
         <DialogHeader className="p-0 text-center">
-          <span className="mx-auto mb-3 inline-flex size-12 items-center justify-center rounded-full bg-primary/15 text-primary">
-            <PartyPopperIcon className="size-6" aria-hidden="true" />
-          </span>
+          {/* Momento de conversão: quem acabou de se cadastrar vê de quem é a
+              campanha antes de escolher entre o material e a vakinha. */}
+          <Image
+            src={matheusLogo}
+            alt=""
+            aria-hidden="true"
+            className="mx-auto mb-4 h-auto w-44"
+            sizes="11rem"
+          />
           <DialogTitle className="font-display text-2xl leading-tight font-black text-foreground">
             Cadastro confirmado!
           </DialogTitle>

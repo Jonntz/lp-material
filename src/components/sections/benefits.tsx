@@ -42,7 +42,7 @@ export function Benefits() {
               key={benefit.title}
               className="rounded-2xl border border-border bg-card p-5 transition hover:border-primary/60 sm:p-6"
             >
-              <span className="font-display text-sm font-black text-primary">
+              <span className="font-display text-sm font-black text-primary-text">
                 {String(index + 1).padStart(2, "0")}
               </span>
               <h3 className="mt-2 font-display text-lg font-black sm:text-xl">

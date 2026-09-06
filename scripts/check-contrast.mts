@@ -18,7 +18,13 @@ const PAIRS: ReadonlyArray<{
   min: number;
   usage: string;
 }> = [
-  { fg: "primary", bg: "background", min: 4.5, usage: "texto de destaque" },
+  // `primary` só é usado como TEXTO em tamanho grande (H1, números das
+  // estatísticas), onde a WCAG pede 3:1. Para texto pequeno existe
+  // `primary-text`, checado logo abaixo nas três superfícies.
+  { fg: "primary", bg: "background", min: 3, usage: "texto grande / preenchimento" },
+  { fg: "primary-text", bg: "background", min: 4.5, usage: "texto pequeno sobre o fundo" },
+  { fg: "primary-text", bg: "card", min: 4.5, usage: "texto pequeno sobre card" },
+  { fg: "primary-text", bg: "ink", min: 4.5, usage: "texto pequeno sobre ink" },
   {
     fg: "primary-foreground",
     bg: "primary",
@@ -84,6 +90,13 @@ const PAIRS: ReadonlyArray<{
     bg: "background",
     min: 4.5,
     usage: "mensagem de erro",
+  },
+  {
+    // os erros de validação são renderizados dentro do card do formulário
+    fg: "destructive",
+    bg: "card",
+    min: 4.5,
+    usage: "mensagem de erro no card",
   },
 ];
 
