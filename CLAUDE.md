@@ -380,6 +380,36 @@ limite de sessão). Scripts de medição ficaram no scratchpad, fora do reposit�
   placeholder do `.env.example` (regressão da Onda 3) e a garantia de que nenhum valor de
   variável vaza na mensagem de erro. Suíte: **100 testes**.
 
+### Onda 9 — o par verde + amarelo
+
+Verde e amarelo passam a ser a dupla que carrega a página.
+
+**O ponto que define o desenho:** os dois **não contrastam entre si** — `#63B32F`
+sobre `#FDC730` dá 1.67:1. Então eles nunca se encostam. O par funciona por
+**blocos alternados**, cada um com o `ink` por cima (verde 5.95:1 · amarelo 9.94:1)
+e sempre com o navy separando — que é como o manual usa nas faixas e na peça
+conceito.
+
+Onde a alternância aparece:
+
+| Elemento | Antes | Agora |
+|---|---|---|
+| Faixa do topo | verde | verde |
+| Faixa do meio | teal | **amarela** |
+| Kicker "Deputado Federal" | verde | **amarelo** |
+| Nome do candidato | verde | verde |
+| Destaque do `<h1>` | verde (5.46:1) | **amarelo (9.11:1)** |
+| Chips `01`–`04` | 4 cores diferentes | **verde · amarelo · verde · amarelo** |
+| Estatísticas | amarelo/verde/laranja | **amarelo · verde · amarelo** |
+| CTA | verde | verde |
+
+A faixa diagonal foi redesenhada para puxar o mesmo par: verde e amarelo em barras
+largas, teal e laranja reduzidos a fios, e o navy entrando como separador entre os
+dois protagonistas.
+
+Laranja e teal seguem no manual e continuam na página — como detalhe e como fio da
+faixa —, mas saíram do primeiro plano.
+
 ### Onda 8 — modal de sucesso não aparecia em produção
 
 Sintoma: o cadastro gravava na planilha e o modal não abria. Reproduzido nunca

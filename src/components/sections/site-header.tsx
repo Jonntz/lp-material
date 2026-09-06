@@ -19,7 +19,7 @@ export function SiteHeader() {
           sizes="(min-width: 640px) 11rem, 8rem"
           priority
         />
-        <p className="mt-5 text-[0.68rem] font-bold tracking-[0.34em] text-primary uppercase sm:text-sm">
+        <p className="mt-5 text-[0.68rem] font-bold tracking-[0.34em] text-accent uppercase sm:text-sm">
           {SITE.role}
         </p>
         {/*

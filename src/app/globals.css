@@ -293,12 +293,14 @@
   .brand-bands {
     background-image: repeating-linear-gradient(
       115deg,
-      var(--brand-teal) 0 46px,
-      var(--brand-verde) 46px 78px,
-      var(--brand-lima) 78px 116px,
-      var(--brand-yellow) 116px 140px,
-      var(--brand-orange) 140px 162px,
-      var(--brand-navy) 162px 208px
+      var(--brand-lima) 0 44px,
+      var(--brand-navy) 44px 60px,
+      var(--brand-yellow) 60px 100px,
+      var(--brand-verde) 100px 128px,
+      var(--brand-navy) 128px 142px,
+      var(--brand-teal) 142px 168px,
+      var(--brand-orange) 168px 186px,
+      var(--brand-navy) 186px 214px
     );
   }
 

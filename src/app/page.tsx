@@ -41,7 +41,7 @@ export default function Home() {
           <SignupForm idPrefix="hero" anchorId="cadastro" />
         </div>
 
-        <Marquee items={MARQUEE_CREDENTIALS} variant="secondary" />
+        <Marquee items={MARQUEE_CREDENTIALS} variant="accent" />
 
         <Manifesto />
         <Benefits />

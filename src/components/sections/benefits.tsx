@@ -3,16 +3,15 @@ import { cn } from "@/lib/utils";
 /**
  * A numeração é um chip preenchido, uma cor do manual por card.
  *
- * Como FUNDO as quatro cores funcionam — o texto é sempre o `ink`, e todas
- * passam em AA por cima dele: lima 5.95:1 · verde 4.87:1 · amarelo 9.94:1 ·
- * laranja 4.84:1. Foi o que destravou o laranja e o verde aqui: como texto
- * pequeno os dois reprovavam sobre o card (3.7:1).
+ * Verde e amarelo alternando, que é o par principal da campanha. Como FUNDO os
+ * dois funcionam bem com o `ink` por cima: verde 5.95:1 e amarelo 9.94:1. Como
+ * texto colorido eles não serviriam — é a inversão que permite usá-los aqui.
  */
 const NUMBER_CHIPS = [
-  "bg-brand-lima",
-  "bg-brand-verde",
+  "bg-primary",
   "bg-accent",
-  "bg-brand-orange",
+  "bg-primary",
+  "bg-accent",
 ] as const;
 
 const BENEFITS = [

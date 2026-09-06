@@ -13,7 +13,7 @@ import { SITE } from "@/config/site";
 const STAT_COLORS = [
   "text-accent",
   "text-primary",
-  "text-brand-orange",
+  "text-accent",
 ] as const;
 
 const STATS = [

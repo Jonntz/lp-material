@@ -27,10 +27,14 @@ type MarqueeProps = {
   /** `normal` = 32s por volta, `fast` = 22s. */
   speed?: "normal" | "fast";
   /**
-   * `primary` = faixa laranja · `secondary` = faixa teal do manual ·
+   * `primary` = faixa verde · `accent` = faixa amarela · `secondary` = teal ·
    * `soft` = discreta sobre `ink-soft`.
+   *
+   * Verde e amarelo se alternam pela página. Os dois não contrastam entre si
+   * (1.67:1), então nunca encostam: sempre com o navy no meio, e sempre com o
+   * texto escuro por cima (`ink` dá 5.95 no verde e 9.94 no amarelo).
    */
-  variant?: "primary" | "secondary" | "soft";
+  variant?: "primary" | "accent" | "secondary" | "soft";
 };
 
 /**
@@ -52,6 +56,7 @@ export function Marquee({
       className={cn(
         "relative overflow-hidden py-3",
         variant === "primary" && "bg-primary text-primary-foreground",
+        variant === "accent" && "bg-accent text-accent-foreground",
         variant === "secondary" && "bg-secondary text-secondary-foreground",
         variant === "soft" &&
           "border-y border-border bg-ink-soft text-foreground",
