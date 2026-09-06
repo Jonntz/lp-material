@@ -8,10 +8,10 @@ import { PauseIcon, PlayIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 /** Intervalo entre as fotos. */
-const INTERVAL_MS = 7000;
+const INTERVAL_MS = 5000;
 
 /** Quanto dura a transição entre uma foto e a seguinte. */
-const FADE_MS = 900;
+const FADE_MS = 920;
 
 /** Enquadramento padrão: bom para retrato em que o rosto está no terço superior. */
 const DEFAULT_OBJECT_POSITION = "center 18%";
@@ -56,7 +56,7 @@ type HeroSlideshowProps = {
  *    vez faria o navegador baixar vários megabytes antes da primeira pintura.
  *
  * 3. **Dá para pausar.** A WCAG 2.2.2 exige um jeito de parar qualquer conteúdo
- *    que se atualize sozinho por mais de 5 segundos — e aqui são 7. Quem pediu
+ *    que se atualize sozinho por mais de 5 segundos — e aqui são 5. Quem pediu
  *    `prefers-reduced-motion: reduce` começa com a apresentação já parada.
  */
 export function HeroSlideshow({ slides, className }: HeroSlideshowProps) {
