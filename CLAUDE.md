@@ -46,34 +46,33 @@ Fonte da verdade: **`Manual de marca - campanha Matheus Biancardine.pdf`**.
 > (navy `#012E40`, verde `#29EA28`). Ele **não vale mais**. O manual de campanha o substitui, e
 > foi ele que o site de referência da Lovable já usava desde o início.
 
-### Paleta — as seis cores e seus papéis
+### Paleta — fundo verde, contraste amarelo
 
-Os papéis foram definidos pelo cliente:
+A página inteira assenta numa **escala de verdes** derivada do `#1CA638` do manual,
+e o **amarelo `#FDC730` é a cor de contraste**: CTA, destaques, numeração.
 
-| Papel | Cores | Onde |
+| Token | Valor | Papel |
 |---|---|---|
-| **Fundo** | `#052E3F` navy · `#03748C` teal | `--background` · `--secondary` (faixa marquee) |
-| **Apoio** | `#63B32F` lima · `#1CA638` verde | `--primary` (CTA, links, faixa) · chips e preenchimentos |
-| **Detalhe** | `#EC671B` laranja · `#FDC730` amarelo | `--accent`, numeração, estatísticas, faixa diagonal |
+| `--background` | `#0D4F1B` | fundo da página |
+| `--ink` | `#0A3913` | campos de formulário, texto sobre amarelo |
+| `--card` / `--ink-soft` | `#116522` | cards e seções alternadas |
+| `--primary` | `#FDC730` | **CTA, destaque, foco** |
+| `--secondary` | `#052E3F` navy | bloco escuro de contraste |
+| `--accent` | `#63B32F` lima | preenchimento apenas |
+| `--foreground` | `#F7FBFC` | texto |
 
-O que cada cor aguenta, medido (`pnpm check:contrast`, 22 pares):
+**Por que o fundo não é o `#1CA638` puro do manual.** Nele só texto escuro passa
+(branco 3.2:1) e o amarelo reprova de vez (2.0:1) — seria um fundo verde *sem
+contraste amarelo possível*. Escurecendo o mesmo matiz e saturação até `#0D4F1B`,
+o branco vai a **9.4:1** e o amarelo a **6.2:1**, e o par passa a funcionar.
+O `#1CA638` e o `#63B32F` continuam na página como preenchimento e na logo.
 
-| Cor | Como texto | Como preenchimento (texto `ink` por cima) |
-|---|---|---|
-| Lima `#63B32F` | ✅ em tudo — navy 5.5 · card 4.6 · ink 5.9 | ✅ 5.95 |
-| Verde `#1CA638` | só em tamanho grande — card 3.75 | ✅ 4.87 |
-| Amarelo `#FDC730` | ✅ o melhor — navy 9.1 · card 7.7 | ✅ 9.94 |
-| Laranja `#EC671B` | só em tamanho grande — card 3.73 | ✅ 4.84 |
-| Teal `#03748C` | ❌ nunca | só com **branco** por cima (5.19) |
+Duas consequências medidas:
 
-Duas consequências práticas:
-
-- **O lima passa como texto em qualquer superfície do site.** Por isso o token
-  `--primary-text`, criado quando a cor de ação era o laranja, pôde ser retirado —
-  `text-primary` voltou a bastar em toda parte.
-- **Laranja e verde entram como preenchimento, não como texto pequeno.** Foi o que
-  destravou os dois na numeração dos cards: em vez de número colorido (3.7:1, reprova),
-  a numeração virou **chip preenchido com o número em `ink`**, e aí as quatro cores passam.
+- **O lima nunca é texto aqui** — sobre o fundo verde dá 3.7:1. Ele é
+  preenchimento, com o `ink` por cima (5.0:1).
+- **O vermelho de erro precisou clarear** para `#FFC9C9`. Sobre um card verde, um
+  vermelho comum não alcança 4.5:1; este dá 4.97:1 no card e 6.72:1 no fundo.
 
 ### Grafismo: a faixa diagonal
 
@@ -379,6 +378,22 @@ limite de sessão). Scripts de medição ficaram no scratchpad, fora do reposit�
 - **`src/lib/env.test.ts`** — 11 testes cobrindo as três formas de PEM aceitas, a recusa do
   placeholder do `.env.example` (regressão da Onda 3) e a garantia de que nenhum valor de
   variável vaza na mensagem de erro. Suíte: **100 testes**.
+
+### Onda 10 — fundo verde
+
+O site inteiro passou do fundo navy para **fundo verde**, com o amarelo como cor
+de contraste. Não é ajuste de acento: é troca da base do tema.
+
+O que a medição impôs ao desenho está na seção "Paleta" acima — em resumo, o verde
+do manual puro não aceita nem branco nem amarelo por cima, então a base é uma
+versão escurecida do mesmo matiz, e aí os dois passam com folga.
+
+Mudanças em cadeia: `text-accent` migrou para `text-primary` em 8 arquivos (o lima
+não passa como texto no fundo verde), os chips de numeração alternam amarelo e
+navy, a faixa do meio virou navy, o vermelho de erro clareou, e a faixa diagonal
+foi redesenhada para o ritmo amarelo/navy sobre verde.
+
+Para voltar ao fundo navy, o commit anterior a este tem a paleta completa.
 
 ### Onda 9 — o par verde + amarelo
 

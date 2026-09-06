@@ -8,18 +8,17 @@
  * Identidade visual — Matheus Biancardine (CAMPANHA)
  * Fonte: "Manual de marca - campanha Matheus Biancardine.pdf".
  *
- * PAPÉIS (definidos pelo cliente):
- *   fundo    #052E3F navy · #03748C teal
- *   apoio    #63B32F lima · #1CA638 verde   → botões, links, faixas
- *   detalhe  #EC671B laranja · #FDC730 amarelo
+ * VERSÃO DE FUNDO VERDE. A página inteira assenta numa escala de verdes
+ * derivada do `#1CA638` do manual, e o AMARELO `#FDC730` é a cor de contraste:
+ * CTA, destaques e numeração.
  *
- * O que cada cor aguenta, medido (`pnpm check:contrast`):
- *   lima    passa como TEXTO em todas as superfícies (navy 5.5 · card 4.6)
- *           e como PREENCHIMENTO com o ink por cima (5.9)
- *   verde   preenchimento com ink (4.9); como texto só em tamanho grande
- *   amarelo o melhor texto de destaque (navy 9.1 · card 7.7)
- *   laranja detalhe de preenchimento; como texto pequeno reprova (3.7 no card)
- *   teal    fundo que só aceita BRANCO por cima (5.2) — nada de texto secundário
+ * Por que o fundo não é o `#1CA638` puro: nele só texto escuro passa (branco
+ * 3.2:1) e o amarelo reprova de vez (2.0:1) — ou seja, seria um fundo verde
+ * SEM contraste amarelo possível. Escurecendo o mesmo matiz até `#0D4F1B`, o
+ * branco vai a 9.4:1 e o amarelo a 6.2:1, e aí o par funciona de verdade.
+ * O `#1CA638` e o `#63B32F` do manual seguem na página como preenchimento.
+ *
+ * O navy `#052E3F` vira bloco escuro de contraste (branco por cima: 13.7:1).
  * ------------------------------------------------------------------------- */
 
 @theme inline {
@@ -84,45 +83,44 @@
   --brand-orange: #ec671b;
   --brand-yellow: #fdc730;
 
-  /* --- fundo --- */
-  --background: #052e3f;
+  /* --- escala de verdes derivada do #1CA638 (mesmo matiz e saturação) --- */
+  --background: #0d4f1b;
   --foreground: #f7fbfc;
-  --ink: #042735;
-  --ink-soft: #073b4f;
-  --card: #073b4f;
+  --ink: #0a3913;
+  --ink-soft: #116522;
+  --card: #116522;
   --card-foreground: #f7fbfc;
-  --popover: #073b4f;
+  --popover: #116522;
   --popover-foreground: #f7fbfc;
 
-  /* --- apoio: o lima é a cor de ação --- */
-  --primary: #63b32f;
-  --primary-foreground: #042735;
+  /* --- amarelo: a cor de contraste. CTA, destaque, numeração. --- */
+  --primary: #fdc730;
+  --primary-foreground: #0a3913;
 
-  /* teal: fundo de faixa e bloco decorativo. Só branco por cima. */
-  --secondary: #03748c;
+  /* --- navy: bloco escuro de contraste, só com branco por cima --- */
+  --secondary: #052e3f;
   --secondary-foreground: #f7fbfc;
 
-  /* --- detalhe --- */
-  --accent: #fdc730;
-  --accent-foreground: #042735;
+  /* --- lima: só preenchimento. Sobre o fundo verde dá 3.7:1, não serve
+         como texto pequeno; com o ink por cima dá 5.0:1 e funciona. --- */
+  --accent: #63b32f;
+  --accent-foreground: #0a3913;
 
-  --muted: #0a4356;
-  --muted-foreground: #a8c7d1;
+  --muted: #0f5b1f;
+  --muted-foreground: #cfe8d2;
 
-  --destructive: #ff7b7b;
-  --destructive-foreground: #042735;
+  /* Vermelho bem claro: sobre o card verde, um vermelho comum não chega a
+     4.5:1. Este dá 4.97:1 no card e 6.72:1 no fundo. */
+  --destructive: #ffc9c9;
+  --destructive-foreground: #0a3913;
 
-  --border: #0f5468;
-  --input: #0a4356;
-  --ring: #63b32f;
+  --border: #1a9d35;
+  --input: #0f5b1f;
+  --ring: #fdc730;
 
-  /*
-   * Borda dos controles de formulário. A WCAG 2.1 §1.4.11 exige 3:1 para
-   * contorno de componente; o `--border` é discreto de propósito e serve para
-   * bordas decorativas, que a norma não cobre.
-   * Aqui: ink 4.5:1 · card 3.5:1 · fundo 4.1:1.
-   */
-  --control-border: #4a93ac;
+  /* Contorno de controle de formulário — WCAG 1.4.11 pede 3:1.
+     Aqui: fundo 4.1:1 · card 3.0:1 · ink 5.5:1. */
+  --control-border: #3abf55;
 
   --radius: 0.5rem;
 
@@ -139,26 +137,26 @@
 /* O site é sempre escuro. `.dark` espelha `:root` para que qualquer componente
  * shadcn que use o seletor dark continue coerente. */
 .dark {
-  --background: #052e3f;
+  --background: #0d4f1b;
   --foreground: #f7fbfc;
-  --card: #073b4f;
+  --card: #116522;
   --card-foreground: #f7fbfc;
-  --popover: #073b4f;
+  --popover: #116522;
   --popover-foreground: #f7fbfc;
-  --primary: #63b32f;
-  --primary-foreground: #042735;
-  --secondary: #03748c;
+  --primary: #fdc730;
+  --primary-foreground: #0a3913;
+  --secondary: #052e3f;
   --secondary-foreground: #f7fbfc;
-  --accent: #fdc730;
-  --accent-foreground: #042735;
-  --muted: #0a4356;
-  --muted-foreground: #a8c7d1;
-  --destructive: #ff7b7b;
-  --destructive-foreground: #042735;
-  --border: #0f5468;
-  --input: #0a4356;
-  --ring: #63b32f;
-  --control-border: #4a93ac;
+  --accent: #63b32f;
+  --accent-foreground: #0a3913;
+  --muted: #0f5b1f;
+  --muted-foreground: #cfe8d2;
+  --destructive: #ffc9c9;
+  --destructive-foreground: #0a3913;
+  --border: #1a9d35;
+  --input: #0f5b1f;
+  --ring: #fdc730;
+  --control-border: #3abf55;
 }
 
 @layer base {
@@ -293,14 +291,13 @@
   .brand-bands {
     background-image: repeating-linear-gradient(
       115deg,
-      var(--brand-lima) 0 44px,
-      var(--brand-navy) 44px 60px,
-      var(--brand-yellow) 60px 100px,
-      var(--brand-verde) 100px 128px,
-      var(--brand-navy) 128px 142px,
-      var(--brand-teal) 142px 168px,
-      var(--brand-orange) 168px 186px,
-      var(--brand-navy) 186px 214px
+      var(--brand-yellow) 0 42px,
+      var(--brand-navy) 42px 74px,
+      var(--brand-lima) 74px 104px,
+      var(--brand-yellow) 104px 130px,
+      var(--brand-teal) 130px 152px,
+      var(--brand-orange) 152px 172px,
+      var(--brand-navy) 172px 206px
     );
   }
 

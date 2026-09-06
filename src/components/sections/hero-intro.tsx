@@ -11,7 +11,7 @@ export function HeroIntro() {
     <div className="rise">
       <h1 className="font-display text-3xl leading-[1.05] font-black sm:text-5xl">
         Minas não precisa de mais um político.{" "}
-        <span className="text-accent">
+        <span className="text-primary">
           Precisa de gente disposta a trabalhar.
         </span>
       </h1>

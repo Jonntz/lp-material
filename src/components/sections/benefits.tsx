@@ -3,15 +3,15 @@ import { cn } from "@/lib/utils";
 /**
  * A numeração é um chip preenchido, uma cor do manual por card.
  *
- * Verde e amarelo alternando, que é o par principal da campanha. Como FUNDO os
- * dois funcionam bem com o `ink` por cima: verde 5.95:1 e amarelo 9.94:1. Como
- * texto colorido eles não serviriam — é a inversão que permite usá-los aqui.
+ * Sobre o fundo verde, o par de contraste é amarelo e navy. Amarelo com o ink
+ * por cima (8.3:1) e navy com o branco (13.7:1). Os dois se destacam do verde
+ * sem competir entre si.
  */
 const NUMBER_CHIPS = [
-  "bg-primary",
-  "bg-accent",
-  "bg-primary",
-  "bg-accent",
+  "bg-primary text-primary-foreground",
+  "bg-secondary text-secondary-foreground",
+  "bg-primary text-primary-foreground",
+  "bg-secondary text-secondary-foreground",
 ] as const;
 
 const BENEFITS = [
@@ -60,7 +60,7 @@ export function Benefits() {
             >
               <span
                 className={cn(
-                  "inline-flex size-9 items-center justify-center rounded-lg font-display text-sm font-black text-primary-foreground",
+                  "inline-flex size-9 items-center justify-center rounded-lg font-display text-sm font-black",
                   NUMBER_CHIPS[index % NUMBER_CHIPS.length],
                 )}
               >

@@ -44,7 +44,9 @@ const PAIRS: ReadonlyArray<{
     min: 4.5,
     usage: "texto secundário sobre card",
   },
-  { fg: "accent", bg: "background", min: 4.5, usage: "badges e números" },
+  // O lima é preenchimento, nunca texto: sobre o fundo verde ele dá 3.7:1.
+  // O que precisa passar é o texto POR CIMA dele, checado logo abaixo.
+  { fg: "accent", bg: "background", min: 3, usage: "lima como preenchimento" },
   {
     fg: "accent-foreground",
     bg: "accent",
@@ -100,16 +102,10 @@ const PAIRS: ReadonlyArray<{
   // A numeração dos cards e as estatísticas ciclam pela paleta do manual.
   // Cada tom precisa se sustentar sobre a superfície em que aparece.
   {
-    fg: "brand-verde",
-    bg: "card",
-    min: 3,
-    usage: "verde como preenchimento",
-  },
-  {
-    fg: "accent",
-    bg: "card",
+    fg: "secondary-foreground",
+    bg: "secondary",
     min: 4.5,
-    usage: "numeração 03 sobre card",
+    usage: "chip e faixa navy",
   },
 ];
 

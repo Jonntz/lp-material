@@ -11,9 +11,9 @@ import { SITE } from "@/config/site";
  * servindo para texto pequeno.
  */
 const STAT_COLORS = [
-  "text-accent",
   "text-primary",
-  "text-accent",
+  "text-primary",
+  "text-primary",
 ] as const;
 
 const STATS = [
