@@ -1,0 +1,53 @@
+{
+  "name": "lp-matheus-biancardine-3055",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "gen:cities": "tsx scripts/generate-mg-cities.mts",
+    "check:contrast": "tsx scripts/check-contrast.mts",
+    "setup:google": "tsx scripts/setup-google-env.mts"
+  },
+  "dependencies": {
+    "class-variance-authority": "^0.7.1",
+    "cn": "^0.2.5",
+    "google-auth-library": "11.0.2",
+    "lucide-react": "^1.41.0",
+    "next": "16.3.4",
+    "radix-ui": "^1.6.7",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "server-only": "^0.0.1",
+    "shadcn": "^4.21.0",
+    "tw-animate-css": "^1.4.0",
+    "zod": "4.5.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.7",
+    "@types/node": "^24",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^6.1.1",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.4",
+    "jsdom": "^30.0.1",
+    "tailwindcss": "^4",
+    "tsx": "^4.23.13",
+    "typescript": "6.0.3",
+    "vitest": "^5.0.0"
+  },
+  "packageManager": "pnpm@11.18.0",
+  "description": "Landing page de captacao de apoiadores - Matheus Biancardine 3055, Deputado Federal MG, Partido Novo.",
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}

@@ -1,0 +1,304 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ---------------------------------------------------------------------------
+ * Identidade visual — Matheus Biancardine (pré-campanha)
+ * Paleta oficial (PDF, pág. 3): #012E40 · #03738C · #29EA28 · #11A837
+ * Amarelo de apoio (faixas diagonais / cartão de visita): #EBE438
+ * Laranja #F37021 é a cor oficial do Partido Novo e vive APENAS dentro do PNG
+ * da logo — nunca como cor de UI.
+ * ------------------------------------------------------------------------- */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-heading: var(--font-display);
+
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  /* superfícies extras usadas pelas seções */
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+
+  /* borda de controles de formulário — ver nota em :root */
+  --color-control-border: var(--control-border);
+
+  /* cores da marca, disponíveis como utilitários bg-brand-… e text-brand-… */
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-teal: var(--brand-teal);
+  --color-brand-green: var(--brand-green);
+  --color-brand-green-deep: var(--brand-green-deep);
+  --color-brand-yellow: var(--brand-yellow);
+  --color-novo-orange: var(--novo-orange);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  color-scheme: dark;
+
+  /* --- paleta da identidade --- */
+  --brand-navy: #012e40;
+  --brand-teal: #03738c;
+  --brand-green: #29ea28;
+  --brand-green-deep: #11a837;
+  --brand-yellow: #ebe438;
+  --novo-orange: #f37021;
+
+  /* --- tokens semânticos (tema único escuro) --- */
+  --background: #012e40;
+  --foreground: #f1f8fa;
+
+  --ink: #011e2b;
+  --ink-soft: #04384c;
+
+  --card: #04384c;
+  --card-foreground: #f1f8fa;
+  --popover: #04384c;
+  --popover-foreground: #f1f8fa;
+
+  --primary: #29ea28;
+  --primary-foreground: #012e40;
+
+  --secondary: #03738c;
+  --secondary-foreground: #f1f8fa;
+
+  --accent: #ebe438;
+  --accent-foreground: #012e40;
+
+  --muted: #063f55;
+  --muted-foreground: #9fc3ce;
+
+  --destructive: #ff6b6b;
+  --destructive-foreground: #011e2b;
+
+  --border: #0b5068;
+  --input: #063f55;
+  --ring: #29ea28;
+
+  /*
+   * Borda dos controles de formulário (inputs, checkbox).
+   *
+   * A WCAG 2.1 §1.4.11 exige 3:1 para o contorno de componentes de interface.
+   * O `--border` do site é bem discreto de propósito (1.4–1.9:1) e serve para
+   * bordas decorativas — cards e divisórias, que a norma não cobre. Campos de
+   * formulário precisam de mais: `#3C859F` dá 4.1:1 sobre `--ink`, 3.0:1 sobre
+   * `--card` e 3.4:1 sobre `--background`. É a única divergência visual
+   * deliberada em relação ao site de referência.
+   */
+  --control-border: #3c859f;
+
+  --radius: 0.5rem;
+
+  --shadow-brand: 0 20px 50px -20px var(--primary);
+}
+
+@supports (color: color-mix(in oklab, red, red)) {
+  :root {
+    --shadow-brand: 0 20px 50px -20px
+      color-mix(in oklab, var(--primary) 55%, transparent);
+  }
+}
+
+/* O site é sempre escuro. `.dark` espelha `:root` para que qualquer componente
+ * shadcn que use o seletor dark continue coerente. */
+.dark {
+  --background: #012e40;
+  --foreground: #f1f8fa;
+  --card: #04384c;
+  --card-foreground: #f1f8fa;
+  --popover: #04384c;
+  --popover-foreground: #f1f8fa;
+  --primary: #29ea28;
+  --primary-foreground: #012e40;
+  --secondary: #03738c;
+  --secondary-foreground: #f1f8fa;
+  --accent: #ebe438;
+  --accent-foreground: #012e40;
+  --muted: #063f55;
+  --muted-foreground: #9fc3ce;
+  --destructive: #ff6b6b;
+  --destructive-foreground: #011e2b;
+  --border: #0b5068;
+  --input: #063f55;
+  --ring: #29ea28;
+  --control-border: #3c859f;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Animações da landing (equivalentes às da referência)
+ * ------------------------------------------------------------------------- */
+
+@keyframes cta-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 0 color-mix(in oklab, var(--primary) 65%, transparent),
+      var(--shadow-brand);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow:
+      0 0 0 16px color-mix(in oklab, var(--primary) 0%, transparent),
+      var(--shadow-brand);
+    transform: scale(1.035);
+  }
+}
+
+@keyframes cta-blink {
+  0%,
+  62%,
+  100% {
+    filter: brightness(1);
+  }
+  80% {
+    filter: brightness(1.28);
+  }
+}
+
+@keyframes marquee-x {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes rise-in {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@layer components {
+  /*
+   * Link de pular para o conteúdo.
+   *
+   * Escrito à mão em vez de `sr-only focus:not-sr-only`: nessa combinação o
+   * `clip-path: inset(50%)` do `sr-only` continuava valendo no foco e o link
+   * nunca aparecia — ficava focável e invisível, que é o pior dos mundos.
+   */
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 60;
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius);
+    background: var(--primary);
+    color: var(--primary-foreground);
+    font-family: var(--font-display);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .skip-link:focus-visible,
+  .skip-link:focus {
+    left: 0.75rem;
+    top: 0.75rem;
+    outline: 2px solid var(--foreground);
+    outline-offset: 2px;
+  }
+
+  .cta-pulsante {
+    will-change: transform, filter;
+  }
+
+  /* a faixa é duplicada no DOM; translateX(-50%) recoloca no ponto de partida */
+  .marquee-track,
+  .marquee-track-fast {
+    display: flex;
+    width: max-content;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .cta-pulsante {
+    animation:
+      cta-pulse 1.9s cubic-bezier(0.4, 0, 0.6, 1) infinite,
+      cta-blink 1.9s ease-in-out infinite;
+  }
+
+  .marquee-track {
+    animation: marquee-x 32s linear infinite;
+  }
+
+  .marquee-track-fast {
+    animation: marquee-x 22s linear infinite;
+  }
+
+  .rise {
+    animation: rise-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+}
